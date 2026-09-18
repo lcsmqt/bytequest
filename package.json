@@ -1,0 +1,23 @@
+{
+  "name": "bytequest",
+  "private": true,
+  "version": "0.1.0",
+  "description": "BYTEQUEST: The Lost Source — free 8-bit RPG that teaches Python through gameplay.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run typecheck && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.worker.json"
+  },
+  "dependencies": {
+    "phaser": "^4.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "typescript": "^5.7.2",
+    "vite": "^8.3.0",
+    "vitest": "^5.0.1"
+  }
+}

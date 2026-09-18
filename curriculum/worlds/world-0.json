@@ -1,0 +1,121 @@
+{
+  "id": "world-0",
+  "order": 0,
+  "title": "O Primeiro Shell",
+  "subtitle": "Onboarding para quem nunca programou",
+  "lessons": [
+    {
+      "id": "w0-l1-primeira-linha",
+      "world": "world-0",
+      "title": "A Primeira Linha",
+      "story": "BYTE flutua até você em meio à escuridão do terminal abandonado. \"Este lugar já foi capaz de conversar com qualquer pessoa em Pyra. Agora nem mesmo consegue dizer uma única palavra. Você consegue fazer o terminal falar de novo?\"",
+      "learningObjectives": ["Entender o que é um programa", "Usar a função print()"],
+      "explanation": "Um programa é uma sequência de instruções que o computador executa, uma de cada vez, de cima para baixo. Python entende comandos escritos em texto simples. O comando print(\"...\") exibe um texto na tela. O texto precisa ficar entre aspas.",
+      "examples": ["print(\"Olá, Pyra!\")", "print(\"BYTE está online.\")"],
+      "challenge": {
+        "id": "w0-c1-primeira-linha",
+        "title": "Reative o Terminal",
+        "instructions": "Escreva um comando que exiba a mensagem: Olá, Pyra!",
+        "starterCode": "# Escreva seu código abaixo\n",
+        "hints": [
+          "Você precisa usar um comando que mostra texto na tela.",
+          "Em Python, esse comando é a função print().",
+          "print(\"texto aqui\")",
+          "print(\"Olá, Pyra!\")",
+          "A resposta completa é: print(\"Olá, Pyra!\")"
+        ],
+        "tests": [
+          { "code": "assert 'Olá, Pyra!' in _bq_stdout", "description": "O terminal exibe 'Olá, Pyra!'" }
+        ],
+        "xp": 20,
+        "successMessage": "As luzes do terminal piscam e voltam a brilhar. BYTE comemora: \"Você fez isso!\""
+      },
+      "prerequisites": [],
+      "concepts": ["print", "sintaxe-basica"]
+    },
+    {
+      "id": "w0-l2-comentarios",
+      "world": "world-0",
+      "title": "Anotações Secretas",
+      "story": "BYTE mostra um painel cheio de anotações apagadas. \"Os antigos engenheiros deixavam lembretes no código. Isso ajuda a lembrar por que uma linha existe, sem afetar o programa.\"",
+      "learningObjectives": ["Entender comentários", "Diferenciar código de comentário"],
+      "explanation": "Uma linha que começa com # é um comentário: o Python a ignora completamente ao executar. Comentários servem para explicar o código para humanos, não para o computador.",
+      "examples": ["# Isso é um comentário\nprint(\"Isso é executado\")"],
+      "challenge": {
+        "id": "w0-c2-comentarios",
+        "title": "Restaure as Anotações",
+        "instructions": "Escreva um comentário com o texto 'painel restaurado' e, em seguida, use print() para exibir: Painel online",
+        "starterCode": "# escreva seu comentário e o print abaixo\n",
+        "hints": [
+          "Um comentário começa com o símbolo #.",
+          "A linha do comentário não precisa de aspas nem afeta o resultado.",
+          "# painel restaurado\nprint(\"...\")",
+          "# painel restaurado\nprint(\"Painel online\")",
+          "A resposta completa é:\n# painel restaurado\nprint(\"Painel online\")"
+        ],
+        "tests": [
+          { "code": "assert 'Painel online' in _bq_stdout", "description": "O painel exibe 'Painel online'" }
+        ],
+        "xp": 15,
+        "successMessage": "BYTE aprova: \"Boas anotações vão ajudar quem ler este código depois — até você mesmo, no futuro!\""
+      },
+      "prerequisites": ["w0-l1-primeira-linha"],
+      "concepts": ["comentarios"]
+    },
+    {
+      "id": "w0-l3-leitura-erros",
+      "world": "world-0",
+      "title": "A Língua dos Erros",
+      "story": "Um alarme dispara. BYTE não entra em pânico: \"Um erro não é o fim do mundo — é uma mensagem. O Python está tentando te dizer exatamente o que deu errado e em qual linha.\"",
+      "learningObjectives": ["Ler uma mensagem de erro simples", "Corrigir um SyntaxError"],
+      "explanation": "Quando o código tem um problema, o Python mostra um traceback: o tipo do erro (ex: SyntaxError) e onde ele aconteceu. Um erro comum de iniciante é esquecer de fechar as aspas ou os parênteses.",
+      "examples": ["print(\"faltou fechar"],
+      "challenge": {
+        "id": "w0-c3-leitura-erros",
+        "title": "Conserte o Comando Quebrado",
+        "instructions": "O código abaixo está com um erro de sintaxe. Corrija-o para que ele exiba: Sistema estável",
+        "starterCode": "print(\"Sistema estável\"",
+        "hints": [
+          "Leia a mensagem de erro: ela aponta o tipo do problema.",
+          "Conte os parênteses: todo ( precisa de um ) correspondente.",
+          "Falta fechar um parêntese no final da linha.",
+          "print(\"Sistema estável\")",
+          "A resposta completa é: print(\"Sistema estável\")"
+        ],
+        "tests": [
+          { "code": "assert 'Sistema estável' in _bq_stdout", "description": "O terminal exibe 'Sistema estável'" }
+        ],
+        "xp": 20,
+        "successMessage": "O alarme para. BYTE: \"Viu? O erro só estava te dizendo onde olhar.\""
+      },
+      "prerequisites": ["w0-l1-primeira-linha"],
+      "concepts": ["erros", "sintaxe-basica"]
+    }
+  ],
+  "boss": {
+    "id": "w0-boss-terminal-corrompido",
+    "world": "world-0",
+    "title": "Terminal Corrompido",
+    "intro": "O terminal central pulsa com uma luz vermelha. Fragmentos de código corrompido flutuam na tela. BYTE: \"Este é o guardião do Primeiro Shell. Mostre a ele que você domina o básico.\"",
+    "challenge": {
+      "id": "w0-boss-challenge",
+      "title": "Desperte o Terminal Central",
+      "instructions": "Escreva um comentário descrevendo o que o código faz e depois exiba as mensagens: Núcleo local restaurado e depois Pyra aguarda, cada uma em uma linha.",
+      "starterCode": "# descreva o que este script faz\n",
+      "hints": [
+        "Você vai precisar de um comentário e de dois comandos print().",
+        "Cada print() em uma linha separada gera uma linha de saída separada.",
+        "# reinicia o terminal\nprint(\"...\")\nprint(\"...\")",
+        "# reinicia o terminal\nprint(\"Núcleo local restaurado\")\nprint(\"Pyra aguarda\")",
+        "A resposta completa é:\n# reinicia o terminal\nprint(\"Núcleo local restaurado\")\nprint(\"Pyra aguarda\")"
+      ],
+      "tests": [
+        { "code": "assert 'Núcleo local restaurado' in _bq_stdout", "description": "Exibe 'Núcleo local restaurado'" },
+        { "code": "assert 'Pyra aguarda' in _bq_stdout", "description": "Exibe 'Pyra aguarda'" }
+      ],
+      "xp": 50,
+      "successMessage": "O vermelho vira azul. O Primeiro Shell desperta por completo."
+    },
+    "victoryText": "O Terminal Corrompido se estabiliza. Uma porta luminosa se abre para o Vale das Variáveis. Você recebe o primeiro Fragmento da Fonte."
+  }
+}

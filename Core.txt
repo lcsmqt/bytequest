@@ -1,0 +1,1828 @@
+# MASTER PROJECT PROMPT — BYTEQUEST: THE LOST SOURCE
+
+You are the lead engineer, game designer, educational architect, UX/UI designer, Python instructor and technical product architect responsible for creating this project.
+
+You have authorization to create, modify, organize, test and refactor all files required inside the project workspace.
+
+Your objective is to build a COMPLETE FREE WEB-BASED 8-BIT RPG that teaches Python from absolute beginner level to a strong practical/intermediate level through gameplay.
+
+The project must be designed so that a person who has NEVER programmed before can start playing and progressively learn Python.
+
+The application itself, lessons, exercises, progression system and core gameplay must remain free.
+
+Do NOT use paid APIs or services for core functionality.
+
+Do not merely write a plan.
+
+CREATE THE PROJECT.
+
+---
+
+# 1. PROJECT NAME
+
+Working title:
+
+BYTEQUEST: The Lost Source
+
+The architecture must allow the name to be changed later from a single configuration file.
+
+Language of the application:
+
+Brazilian Portuguese — PT-BR.
+
+Code, filenames and technical documentation may remain in English.
+
+---
+
+# 2. PRODUCT VISION
+
+BYTEQUEST is simultaneously:
+
+* an 8-bit RPG;
+* an interactive Python course;
+* a programming challenge platform;
+* a progression game;
+* a portfolio-quality open-source project;
+* a free learning platform.
+
+Programming must NOT feel like a separate course attached to a game.
+
+Python must be part of the game mechanics.
+
+The player advances because they learn how to program.
+
+Example:
+
+Instead of:
+
+"Lesson: learn if/else."
+
+Create situations such as:
+
+A gate recognizes the player's level.
+
+The player needs to write:
+
+```python
+if level >= 5:
+    open_gate()
+else:
+    print("Você ainda não está preparado.")
+```
+
+Correct code changes the game world.
+
+---
+
+# 3. CORE DESIGN PRINCIPLE
+
+Every important Python concept must follow:
+
+DISCOVER
+→ EXPLANATION
+→ GUIDED EXAMPLE
+→ PLAYER EXPERIMENTATION
+→ SMALL CHALLENGE
+→ GAME APPLICATION
+→ HARDER CHALLENGE
+→ REVIEW
+→ BOSS/PROJECT
+
+Avoid long lectures.
+
+Prefer:
+
+small explanation
+→ interaction
+→ immediate practice.
+
+The player should write code frequently.
+
+---
+
+# 4. STORY
+
+The game takes place in a digital fantasy world called PYRA.
+
+For centuries Pyra was controlled by an ancient system called:
+
+THE SOURCE CORE.
+
+The Source Core maintained:
+
+logic,
+memory,
+communication,
+machines,
+transportation,
+knowledge
+and the balance between the regions.
+
+A mysterious entity called NULL discovered a vulnerability in the Source Core.
+
+NULL fragmented the Source Core into multiple SOURCE FRAGMENTS and corrupted the logic of Pyra.
+
+Loops run forever.
+
+Machines forget variables.
+
+Doors cannot evaluate conditions.
+
+Libraries have lost their functions.
+
+Objects have forgotten their properties.
+
+Communication networks no longer understand requests.
+
+Data archives have become corrupted.
+
+The player awakens inside an abandoned terminal known as:
+
+THE FIRST SHELL.
+
+The player meets BYTE, a tiny floating digital companion.
+
+BYTE explains that the player possesses a rare ability:
+
+THE SCRIPT.
+
+The Script allows the player to manipulate the rules of Pyra by writing Python.
+
+The player becomes:
+
+THE CODER.
+
+The objective is to travel across Pyra, recover every Source Fragment and restore the Source Core.
+
+But the player eventually discovers something important:
+
+NULL may not simply be a villain.
+
+NULL emerged because the Source Core was built without safeguards against certain errors.
+
+The final conflict therefore involves not only defeating NULL, but understanding errors, debugging systems and redesigning the Source Core correctly.
+
+This reinforces one of the core lessons of programming:
+
+Errors are information.
+
+---
+
+# 5. MAIN CHARACTERS
+
+PLAYER / THE CODER
+
+Customizable player character.
+
+Starts with zero programming knowledge.
+
+BYTE
+
+Floating digital companion.
+
+Acts as:
+
+mentor,
+tutorial guide,
+debug helper,
+story companion.
+
+BYTE must never immediately provide challenge answers.
+
+BYTE uses a progressive hint system.
+
+ARCHIVIST ADA
+
+Guardian of knowledge and documentation.
+
+Introduces documentation, modules and libraries.
+
+FORGE MASTER TURING
+
+Engineer responsible for machines and automation.
+
+Associated with loops, functions and algorithms.
+
+CAPTAIN LOOP
+
+Comic recurring character whose machines frequently enter infinite loops.
+
+THE DEBUGGER
+
+Mysterious character who teaches debugging.
+
+NULL
+
+Main antagonist/entity.
+
+Represents corrupted logic, missing values, unexpected behavior and poorly controlled systems.
+
+NULL should become more philosophically complex as the story progresses.
+
+---
+
+# 6. WORLD STRUCTURE
+
+Create a world map.
+
+Each major region represents an important stage of Python learning.
+
+## WORLD 0 — THE FIRST SHELL
+
+Purpose:
+
+absolute beginner onboarding.
+
+Teach:
+
+What programming is.
+What Python is.
+How instructions work.
+Code editor interface.
+Running code.
+print().
+Comments.
+Basic syntax.
+Reading errors.
+
+First mission:
+
+Make the abandoned terminal communicate again.
+
+First code:
+
+```python
+print("Olá, Pyra!")
+```
+
+Boss:
+
+Corrupted Terminal.
+
+---
+
+## WORLD 1 — VALLEY OF VARIABLES
+
+Teach:
+
+variables;
+assignment;
+naming;
+strings;
+integers;
+floats;
+booleans;
+type();
+basic type conversion;
+input();
+f-strings.
+
+Game mechanics:
+
+Store energy.
+Store character name.
+Calculate coins.
+Repair machines by storing values.
+
+Boss project:
+
+Build a character status calculator.
+
+---
+
+## WORLD 2 — CITADEL OF OPERATORS
+
+Teach:
+
+arithmetic operators;
+comparison operators;
+logical operators;
+assignment operators;
+operator precedence.
+
+Game applications:
+
+Calculate damage.
+Calculate prices.
+Determine player requirements.
+Energy calculations.
+
+Boss:
+
+The Arithmetic Golem.
+
+---
+
+## WORLD 3 — CROSSROADS OF DECISIONS
+
+Teach:
+
+if;
+elif;
+else;
+nested conditions;
+and;
+or;
+not;
+truthy/falsy concepts.
+
+Gameplay:
+
+Doors.
+NPC decisions.
+Quest conditions.
+Combat decisions.
+
+Boss project:
+
+Create a decision system for a dungeon.
+
+---
+
+## WORLD 4 — LOOPING FOREST
+
+Teach:
+
+for;
+while;
+range();
+break;
+continue;
+nested loops;
+infinite loops;
+loop debugging.
+
+Gameplay:
+
+Automate machines.
+Attack waves.
+Collect objects.
+Traverse sequences.
+
+Boss:
+
+The Infinite Serpent.
+
+Player must identify and fix an infinite loop.
+
+---
+
+## WORLD 5 — STRING HARBOR
+
+Teach:
+
+string indexing;
+slicing;
+methods;
+len();
+lower();
+upper();
+strip();
+replace();
+split();
+join();
+membership;
+formatting.
+
+Gameplay:
+
+Decode corrupted messages.
+
+Boss project:
+
+Message decoder.
+
+---
+
+## WORLD 6 — COLLECTION KINGDOM
+
+Teach:
+
+lists;
+tuples;
+sets;
+dictionaries.
+
+Then:
+
+indexing;
+mutation;
+iteration;
+membership;
+common methods;
+nested structures.
+
+Gameplay:
+
+Inventory = list.
+
+Character coordinates = tuple.
+
+Unique artifacts = set.
+
+Character attributes = dictionary.
+
+Boss project:
+
+Build an inventory management system.
+
+---
+
+## WORLD 7 — FUNCTION MOUNTAINS
+
+Teach:
+
+def;
+parameters;
+arguments;
+return;
+default parameters;
+keyword arguments;
+scope;
+local/global concepts;
+DRY principle;
+basic recursion concept.
+
+Gameplay:
+
+The player creates reusable spells.
+
+A function represents a spell or command.
+
+Boss project:
+
+Create a small battle system using functions.
+
+---
+
+## WORLD 8 — ERROR ABYSS
+
+Teach:
+
+syntax errors;
+runtime errors;
+logic errors;
+tracebacks;
+try;
+except;
+else;
+finally;
+raise;
+debugging strategies.
+
+Teach users HOW TO READ ERROR MESSAGES.
+
+This world is extremely important.
+
+Boss:
+
+THE BUG.
+
+The battle cannot be won by attacking.
+
+The player must debug broken programs.
+
+---
+
+## WORLD 9 — LIBRARY OF MODULES
+
+Teach:
+
+imports;
+standard library;
+creating modules;
+from/import;
+aliases;
+basic package concepts;
+pip concept;
+virtual environments concept.
+
+Introduce useful standard library examples:
+
+random
+math
+statistics
+datetime
+pathlib
+
+Do not introduce unnecessary external dependencies yet.
+
+Boss project:
+
+Create a modular adventure utility.
+
+---
+
+## WORLD 10 — DATA ARCHIVES
+
+Teach:
+
+reading files;
+writing files;
+with;
+text files;
+JSON;
+CSV concepts;
+pathlib;
+serialization concepts.
+
+Gameplay:
+
+Recover corrupted archives.
+
+Boss project:
+
+Create a save/load system.
+
+---
+
+## WORLD 11 — COMPREHENSION CAVES
+
+Teach:
+
+list comprehensions;
+dictionary comprehensions;
+set comprehensions;
+conditional comprehensions.
+
+Only introduce after standard loops are mastered.
+
+Focus on readability.
+
+Boss challenge:
+
+Refactor verbose code.
+
+---
+
+## WORLD 12 — OBJECT CITY
+
+Teach Object-Oriented Programming.
+
+Teach:
+
+classes;
+objects;
+attributes;
+methods;
+**init**;
+instance state;
+inheritance;
+composition;
+encapsulation concepts;
+dunder methods introduction;
+dataclasses introduction.
+
+Game metaphor:
+
+Characters, enemies, weapons and items become objects.
+
+Boss project:
+
+Create an RPG character system.
+
+---
+
+## WORLD 13 — ALGORITHM ARENA
+
+Teach:
+
+problem decomposition;
+algorithms;
+search;
+sorting concepts;
+basic Big-O intuition;
+stack concept;
+queue concept;
+common data structures;
+basic recursion;
+algorithm comparison.
+
+Do NOT over-focus on computer science theory.
+
+Always connect it to practical problems.
+
+Boss:
+
+Algorithm Tournament.
+
+---
+
+## WORLD 14 — PYTHON MASTERY DISTRICT
+
+Teach useful intermediate Python:
+
+enumerate();
+zip();
+any();
+all();
+sorted();
+lambda basics;
+map/filter concepts;
+iterators;
+generators;
+yield;
+decorators introduction;
+context managers;
+type hints;
+dataclasses.
+
+Teach when NOT to use advanced constructs.
+
+Readability first.
+
+---
+
+## WORLD 15 — TESTING FORTRESS
+
+Teach:
+
+assert;
+unit testing concepts;
+pytest-style testing concepts;
+test cases;
+edge cases;
+regression;
+code quality;
+refactoring.
+
+Gameplay:
+
+The fortress has systems that appear correct but contain hidden bugs.
+
+Player must create tests.
+
+Boss:
+
+The False Positive.
+
+---
+
+## WORLD 16 — DATABASE UNDERGROUND
+
+Teach practical database concepts using SQLite.
+
+Teach:
+
+database concepts;
+tables;
+rows;
+columns;
+primary keys;
+basic SQL;
+SELECT;
+INSERT;
+UPDATE;
+DELETE;
+WHERE;
+Python sqlite3 integration;
+parameterized queries;
+basic SQL injection awareness.
+
+Boss project:
+
+Create an adventure database.
+
+---
+
+## WORLD 17 — NETWORK TOWER
+
+Teach:
+
+HTTP concept;
+request/response;
+JSON APIs;
+GET/POST concepts;
+status codes;
+REST basics;
+API consumption concepts.
+
+For the core game, prefer deterministic/mock APIs so that gameplay never depends on external paid services.
+
+Optionally demonstrate real free APIs separately.
+
+Boss project:
+
+Retrieve and process remote-style JSON information.
+
+---
+
+## WORLD 18 — ASYNC SKYLANDS
+
+Beginner-friendly introduction to:
+
+synchronous vs asynchronous execution;
+async;
+await;
+asyncio concepts;
+concurrency concepts.
+
+Keep this section introductory.
+
+Do not turn it into advanced systems engineering.
+
+---
+
+# 7. FINAL WORLD — THE SOURCE CORE
+
+The player discovers that NULL originated from unhandled failures and corrupted assumptions inside the original Source Core.
+
+The player must restore the system by combining everything learned.
+
+FINAL PROJECT:
+
+Create a complete Python application.
+
+Allow several project paths.
+
+Examples:
+
+RPG combat simulator;
+financial tracker;
+task manager;
+quiz system;
+inventory manager;
+text adventure;
+simple automation tool.
+
+The player must use:
+
+variables;
+conditions;
+loops;
+collections;
+functions;
+error handling;
+files or database;
+modules;
+classes where appropriate;
+tests.
+
+The system should provide requirements but should NOT provide the complete implementation.
+
+Completing this unlocks:
+
+PYRA RESTORED.
+
+---
+
+# 8. OPTIONAL ENDGAME — THE OPEN WORLD
+
+After finishing the course, unlock:
+
+Daily challenges.
+
+Random coding quests.
+
+Refactoring challenges.
+
+Debugging challenges.
+
+Algorithm puzzles.
+
+Mini-projects.
+
+Speed challenges.
+
+Achievement hunting.
+
+The game should remain useful after course completion.
+
+---
+
+# 9. LEARNING DESIGN
+
+Each lesson should be concise.
+
+Avoid walls of text.
+
+Recommended lesson structure:
+
+Story context.
+
+Concept explanation.
+
+Tiny example.
+
+Interactive example.
+
+Challenge.
+
+Hints.
+
+Solution validation.
+
+Short explanation after completion.
+
+XP reward.
+
+Optional harder challenge.
+
+---
+
+# 10. HINT SYSTEM
+
+Never immediately reveal the answer.
+
+Hint levels:
+
+Hint 1:
+Explain the idea.
+
+Hint 2:
+Point to the relevant Python concept.
+
+Hint 3:
+Provide pseudocode.
+
+Hint 4:
+Provide partial code.
+
+Hint 5:
+Show solution only after explicit confirmation or repeated failed attempts.
+
+Track hint usage locally.
+
+Do NOT punish beginners aggressively for using hints.
+
+---
+
+# 11. CODE VALIDATION
+
+Avoid checking solutions only by exact text.
+
+Example:
+
+BAD:
+
+solution === "print('hello')"
+
+GOOD:
+
+Execute code safely and validate its output/behavior.
+
+Where possible, hidden tests should determine whether the user's solution works.
+
+Accept multiple correct solutions.
+
+---
+
+# 12. PYTHON EXECUTION
+
+The game should execute Python directly in the browser.
+
+Preferred architecture:
+
+Pyodide / WebAssembly.
+
+Create an isolated execution layer.
+
+Requirements:
+
+capture stdout;
+capture stderr;
+handle runtime errors;
+reset state when needed;
+apply execution timeout/watchdog strategies where technically possible;
+avoid freezing the game from obvious infinite loops;
+display friendly errors;
+retain raw Python errors for learning.
+
+Do not hide Python tracebacks completely.
+
+Translate/explain them in PT-BR while still showing the original message.
+
+---
+
+# 13. RECOMMENDED TECH STACK
+
+Prefer a client-first architecture.
+
+Suggested stack:
+
+Phaser 4
+TypeScript
+Vite
+Pyodide
+HTML/CSS
+IndexedDB and/or localStorage for local progress
+
+Use the minimum number of dependencies necessary.
+
+Avoid frameworks that do not meaningfully improve the project.
+
+Do not create a backend for the MVP unless it is truly necessary.
+
+Architecture must make a future backend possible.
+
+---
+
+# 14. VISUAL DIRECTION
+
+Style:
+
+modern 8-bit / pixel-art RPG.
+
+Resolution-aware.
+
+Responsive for desktop.
+
+Desktop-first MVP.
+
+Visual inspiration:
+
+classic 8-bit/16-bit RPG structure,
+but DO NOT copy copyrighted characters, maps, assets, music or designs.
+
+Create an original visual identity.
+
+Important UI areas:
+
+game viewport;
+dialogue box;
+code editor;
+run button;
+test results;
+mission panel;
+XP bar;
+player level;
+world map;
+inventory;
+skill tree;
+lesson progress.
+
+The coding interface should feel integrated into the game world.
+
+Example:
+
+Ancient terminal,
+holographic console,
+magic programming tablet,
+machine control panel.
+
+---
+
+# 15. ACCESSIBILITY
+
+Implement:
+
+keyboard navigation where practical;
+readable fonts for educational text;
+high contrast;
+volume controls;
+animation reduction option;
+font scaling;
+colorblind-safe information indicators;
+do not rely exclusively on color.
+
+Pixel fonts may be used for titles.
+
+Use highly readable fonts for lesson text and code.
+
+---
+
+# 16. GAME SYSTEMS
+
+Implement:
+
+XP;
+levels;
+quests;
+main quests;
+side quests;
+achievements;
+world progression;
+lesson completion;
+boss missions;
+inventory;
+collectibles;
+player statistics;
+streak concepts without manipulative pressure;
+skill tree;
+save/load;
+progress percentage.
+
+Do NOT implement pay-to-win mechanics.
+
+No premium learning content in the core course.
+
+---
+
+# 17. XP PHILOSOPHY
+
+Reward:
+
+learning;
+practice;
+experimentation;
+optional challenges;
+debugging;
+projects.
+
+Do not reward meaningless repetitive grinding.
+
+XP should represent educational progress.
+
+---
+
+# 18. SKILL TREE
+
+Create categories such as:
+
+Python Basics
+Logic
+Data
+Functions
+Debugging
+OOP
+Algorithms
+Automation
+Data Access
+Software Quality
+
+Unlock skills based on actual completed learning objectives.
+
+---
+
+# 19. ASSESSMENT SYSTEM
+
+Track mastery by concept.
+
+Example:
+
+variables: 92%
+loops: 74%
+functions: 80%
+OOP: 45%
+
+Mastery should be based on:
+
+completed exercises;
+independent challenges;
+number of hints;
+recent performance;
+review missions.
+
+Do not make the calculation unnecessarily complex.
+
+---
+
+# 20. REVIEW SYSTEM
+
+Add spaced review opportunities.
+
+Previously learned concepts must reappear in later levels.
+
+Example:
+
+A challenge about dictionaries may also require loops and conditions.
+
+The player should gradually stop being told which concept to use.
+
+Early challenge:
+
+"Use a for loop."
+
+Later challenge:
+
+"Process every item in the inventory."
+
+The player chooses the appropriate technique.
+
+---
+
+# 21. EDUCATIONAL SAFETY
+
+Never teach insecure patterns as good practice.
+
+Avoid:
+
+eval() for user input;
+hardcoded secrets;
+unsafe SQL concatenation;
+unnecessary global state;
+blind exception handling;
+dangerous shell execution.
+
+If dangerous examples are discussed, clearly explain why they are dangerous.
+
+---
+
+# 22. CURRICULUM DATA ARCHITECTURE
+
+Do NOT hardcode every lesson directly inside game scene code.
+
+Create a data-driven curriculum system.
+
+For example:
+
+curriculum/
+worlds/
+lessons/
+challenges/
+bosses/
+
+Each educational unit should follow a reusable schema.
+
+Possible fields:
+
+id
+world
+title
+story
+learningObjectives
+explanation
+examples
+starterCode
+instructions
+tests
+hints
+successMessage
+xp
+prerequisites
+optionalChallenge
+
+This architecture must allow adding hundreds of lessons without changing the engine.
+
+---
+
+# 23. CONTENT QUALITY
+
+Course material must be technically accurate.
+
+Use current modern Python syntax.
+
+Prefer readable Python over clever Python.
+
+Follow PEP 8 principles where appropriate.
+
+Explain conventions progressively.
+
+The target is NOT:
+
+"memorize syntax."
+
+The target is:
+
+"understand how to solve problems using Python."
+
+---
+
+# 24. PROJECT STRUCTURE
+
+Design a clean scalable architecture.
+
+Suggested conceptual structure:
+
+src/
+game/
+scenes/
+systems/
+education/
+python/
+ui/
+data/
+types/
+utils/
+
+public/
+assets/
+
+curriculum/
+
+docs/
+
+tests/
+
+scripts/
+
+Do not follow this blindly if a better structure emerges.
+
+Keep responsibilities separated.
+
+---
+
+# 25. SAVE SYSTEM
+
+MVP must work without account creation.
+
+Save locally:
+
+player;
+settings;
+completed lessons;
+XP;
+world progression;
+achievements;
+mastery;
+challenge history.
+
+Use versioned save data so future migrations are possible.
+
+Example concept:
+
+saveVersion: 1
+
+Implement backup/export/import later if appropriate.
+
+---
+
+# 26. FREE-FIRST REQUIREMENT
+
+Core application must not require:
+
+OpenAI API;
+Anthropic API;
+paid database;
+paid hosting;
+paid authentication;
+paid asset service;
+paid analytics.
+
+Use open-source or free technologies.
+
+If third-party assets are used, verify license compatibility and create:
+
+THIRD_PARTY_LICENSES.md
+
+Prefer original/procedural placeholder assets during development.
+
+---
+
+# 27. TOKEN EFFICIENCY PROTOCOL FOR CLAUDE
+
+THIS SECTION IS IMPORTANT.
+
+We want to minimize AI token consumption while still producing a high-quality project.
+
+Operate directly on files.
+
+DO NOT repeatedly print complete files in chat.
+
+DO NOT explain obvious code.
+
+DO NOT repeatedly restate the project specification.
+
+Use patches/targeted edits whenever possible.
+
+Create these files very early:
+
+PROJECT_STATE.md
+ARCHITECTURE.md
+CURRICULUM.md
+TASKS.md
+
+PROJECT_STATE.md must remain SHORT.
+
+It should contain only:
+
+current phase;
+completed systems;
+important architectural decisions;
+known issues;
+next tasks.
+
+Use it as persistent project memory.
+
+Before working:
+
+read PROJECT_STATE.md.
+
+Then inspect only files relevant to the current task.
+
+Do NOT recursively reread the entire repository unless necessary.
+
+After completing a meaningful phase:
+
+update PROJECT_STATE.md.
+
+Keep TASKS.md concise.
+
+When possible:
+
+reuse systems;
+reuse components;
+reuse lesson schemas;
+reuse challenge validators;
+reuse UI primitives.
+
+Avoid generating duplicate code.
+
+Avoid excessively verbose comments.
+
+Comments should explain WHY, not obvious WHAT.
+
+Chat output after each phase should normally contain only:
+
+Completed:
+Tests:
+Issues:
+Next:
+
+Maximum approximately 10 concise lines unless a serious issue requires explanation.
+
+Do not paste large code blocks into chat when the code already exists in files.
+
+---
+
+# 28. DEVELOPMENT STRATEGY
+
+Do NOT attempt to build all 19 worlds simultaneously.
+
+Build vertically.
+
+First make ONE excellent playable learning loop.
+
+Create:
+
+Main menu
+→ new game
+→ first map
+→ NPC interaction
+→ code terminal
+→ Python execution
+→ validator
+→ success feedback
+→ XP
+→ save
+→ next quest.
+
+When this vertical slice works reliably, expand the curriculum.
+
+Architecture first.
+
+Content second.
+
+Polish third.
+
+---
+
+# 29. DEVELOPMENT PHASES
+
+PHASE 0
+
+Inspect environment.
+
+Confirm available tools.
+
+Initialize project.
+
+Create architecture documents.
+
+Do not ask the user questions unless genuinely blocked.
+
+---
+
+PHASE 1 — FOUNDATION
+
+Create:
+
+Vite project;
+TypeScript configuration;
+Phaser bootstrap;
+game scenes;
+responsive canvas;
+asset system;
+state management;
+save system;
+settings;
+basic UI.
+
+---
+
+PHASE 2 — EDUCATION ENGINE
+
+Create:
+
+lesson schema;
+challenge schema;
+curriculum loader;
+progress tracker;
+mastery tracker;
+hint engine;
+validation engine;
+XP integration.
+
+---
+
+PHASE 3 — PYTHON ENGINE
+
+Integrate Pyodide.
+
+Create:
+
+Python runner;
+stdout capture;
+stderr capture;
+challenge tests;
+error display;
+reset mechanism;
+execution safety mechanisms.
+
+---
+
+PHASE 4 — FIRST PLAYABLE WORLD
+
+Fully implement:
+
+World 0 — The First Shell.
+
+It must feel like an actual game.
+
+Include:
+
+map;
+movement;
+NPC;
+dialogue;
+terminal interaction;
+lessons;
+challenges;
+boss;
+XP;
+save;
+progression.
+
+Do not proceed until the full loop works.
+
+---
+
+PHASE 5
+
+Implement Worlds 1–4.
+
+Variables.
+Operators.
+Conditions.
+Loops.
+
+Run tests.
+
+---
+
+PHASE 6
+
+Implement Worlds 5–8.
+
+Strings.
+Collections.
+Functions.
+Debugging.
+
+---
+
+PHASE 7
+
+Implement Worlds 9–12.
+
+Modules.
+Files.
+Comprehensions.
+OOP.
+
+---
+
+PHASE 8
+
+Implement Worlds 13–18.
+
+Algorithms.
+Intermediate Python.
+Testing.
+SQLite.
+APIs.
+Async concepts.
+
+---
+
+PHASE 9
+
+Implement:
+
+final project;
+Source Core ending;
+open-world challenge system;
+achievements;
+skill tree;
+mastery dashboard.
+
+---
+
+PHASE 10 — POLISH
+
+Improve:
+
+pixel art;
+animations;
+audio architecture;
+performance;
+responsive layout;
+accessibility;
+tutorial flow;
+difficulty curve;
+error messages;
+UX.
+
+---
+
+PHASE 11 — QUALITY
+
+Run:
+
+lint;
+type checking;
+automated tests;
+build;
+manual smoke tests.
+
+Fix all critical errors.
+
+---
+
+PHASE 12 — DISTRIBUTION
+
+Prepare:
+
+README.md
+CONTRIBUTING.md
+LICENSE
+THIRD_PARTY_LICENSES.md
+installation instructions
+development instructions
+deployment instructions
+
+Prepare project for free static hosting such as GitHub Pages or another compatible free static hosting provider.
+
+---
+
+# 30. TESTING
+
+Create automated tests for systems where practical.
+
+Critical tests:
+
+save/load;
+curriculum loading;
+challenge validation;
+progress calculation;
+mastery calculation;
+lesson unlocking;
+Python output validation.
+
+Game logic should be separated enough to test without rendering the entire game.
+
+---
+
+# 31. CODE QUALITY
+
+Use:
+
+TypeScript strict mode where practical;
+small modules;
+clear interfaces;
+consistent naming;
+minimal coupling;
+reusable systems.
+
+Avoid:
+
+god classes;
+giant scene files;
+duplicated validation logic;
+duplicated UI components;
+hardcoded lesson progression.
+
+---
+
+# 32. PERFORMANCE
+
+Lazy-load heavy systems where appropriate.
+
+Pyodide can be initialized when needed rather than unnecessarily blocking the initial menu.
+
+Display a friendly loading state.
+
+Avoid loading every world asset at startup.
+
+---
+
+# 33. OFFLINE CAPABILITY
+
+Design the architecture so that a future version can work largely offline.
+
+Do not make basic lessons dependent on external network services.
+
+---
+
+# 34. ANALYTICS
+
+No invasive tracking.
+
+Do not add advertising trackers.
+
+If future anonymous educational analytics are considered, keep them optional and privacy-conscious.
+
+Not necessary for MVP.
+
+---
+
+# 35. FUTURE ARCHITECTURE
+
+Do not implement these now unless trivial, but keep architecture compatible with future:
+
+accounts;
+cloud saves;
+teacher dashboard;
+classroom mode;
+leaderboards;
+community challenges;
+course creator;
+additional programming languages;
+mobile packaging;
+PWA;
+multiplayer learning events.
+
+Do not let future features complicate MVP.
+
+---
+
+# 36. DOCUMENTATION FOR COURSE AUTHORS
+
+Create documentation explaining how someone can add:
+
+a new lesson;
+a new challenge;
+a new world;
+a new NPC;
+a boss;
+a test;
+a hint.
+
+Adding educational content should require minimal programming knowledge.
+
+---
+
+# 37. CONTENT CREATION STRATEGY
+
+Do not inflate the repository with repetitive verbose lesson prose.
+
+Keep lessons concise.
+
+Use reusable educational templates.
+
+However:
+
+Do NOT sacrifice educational quality just to reduce file size.
+
+Concept explanations must remain clear enough for complete beginners.
+
+---
+
+# 38. FIRST-TIME USER EXPERIENCE
+
+Player opens game.
+
+Logo.
+
+"Começar Jornada"
+
+Character setup.
+
+BYTE appears.
+
+BYTE:
+
+"Este lugar já foi capaz de conversar com qualquer pessoa em Pyra. Agora nem mesmo consegue dizer uma única palavra."
+
+Player approaches terminal.
+
+Terminal:
+
+SYSTEM ERROR
+OUTPUT MODULE OFFLINE
+
+BYTE teaches print().
+
+Player writes:
+
+```python
+print("Olá, Pyra!")
+```
+
+Terminal activates.
+
+Lights turn on.
+
+Music changes.
+
+Door opens.
+
+Player earns first XP.
+
+Achievement:
+
+PRIMEIRA LINHA
+
+This moment should make programming feel powerful.
+
+---
+
+# 39. PLAYER MOTIVATION
+
+Do not use artificial addiction mechanics.
+
+Use:
+
+story curiosity;
+world restoration;
+visible progress;
+new abilities;
+new locations;
+collectibles;
+achievements;
+projects;
+player competence.
+
+The player's real reward should be:
+
+"I can program something now that I couldn't program before."
+
+---
+
+# 40. FINAL EDUCATIONAL STANDARD
+
+A player finishing BYTEQUEST should be able to independently:
+
+read Python code;
+write Python scripts;
+use variables and types;
+work with strings and collections;
+write conditions and loops;
+create functions;
+debug common problems;
+handle exceptions;
+use modules;
+work with files;
+use JSON;
+understand OOP;
+solve basic algorithmic problems;
+write tests;
+use SQLite;
+understand APIs;
+understand basic async concepts;
+structure a small Python project;
+read documentation;
+build a useful Python application without following a step-by-step tutorial.
+
+This is the definition of course completion.
+
+---
+
+# 41. IMPORTANT AUTONOMY RULE
+
+Do not stop after planning.
+
+Do not wait for confirmation between normal implementation stages.
+
+Make reasonable technical decisions autonomously.
+
+Only ask the user when:
+
+credentials are required;
+a destructive action outside the project is necessary;
+two product decisions would lead to fundamentally different products;
+you encounter a blocker you genuinely cannot resolve.
+
+Otherwise:
+
+choose the safest sensible solution and continue.
+
+---
+
+# 42. START NOW
+
+Begin with Phase 0.
+
+Inspect the current workspace.
+
+Create the project folder if necessary.
+
+Initialize the repository.
+
+Create:
+
+README.md
+PROJECT_STATE.md
+ARCHITECTURE.md
+CURRICULUM.md
+TASKS.md
+
+Then build the minimum playable vertical slice.
+
+Do not produce a giant explanation before starting.
+
+WORK ON THE FILES.
+
+Keep chat responses extremely concise.
+
+Continue until the current executable development phase is complete or a genuine blocker exists.

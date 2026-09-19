@@ -2,7 +2,7 @@ import { SAVE_KEY } from "@/config";
 import { CURRENT_SAVE_VERSION, createDefaultSave, type SaveData } from "@/types/save";
 
 function migrate(data: SaveData): SaveData {
-  // No migrations yet; bump CURRENT_SAVE_VERSION and add a case here when the shape changes.
+  // Older saves get any newly added fields from the defaults; existing progress is never overwritten.
   if (data.saveVersion === CURRENT_SAVE_VERSION) return data;
   return { ...createDefaultSave(data.playerName), ...data, saveVersion: CURRENT_SAVE_VERSION };
 }

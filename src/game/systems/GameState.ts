@@ -1,6 +1,7 @@
 import { loadSave, newSave, writeSave } from "@/data/saveStore";
 import type { SaveData } from "@/types/save";
-import type { Lesson } from "@/types/curriculum";
+import type { Bug, Lesson } from "@/types/curriculum";
+import { applyBugDefeat } from "@/education/bugs";
 import { applyCompletion, type CompletionInput } from "@/education/progress";
 
 /** Single in-memory holder for the active save, so scenes don't each own their own copy. */
@@ -28,6 +29,13 @@ class GameStateStore {
 
   completeLesson(input: Omit<CompletionInput, "lesson"> & { lesson: Lesson }): SaveData {
     this.save = applyCompletion(this.current, input);
+    writeSave(this.save);
+    return this.save;
+  }
+
+  /** Records a won bug encounter (XP, level, never repaid) and saves. */
+  recordBug(bug: Bug): SaveData {
+    this.save = applyBugDefeat(this.current, bug);
     writeSave(this.save);
     return this.save;
   }

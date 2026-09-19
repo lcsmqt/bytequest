@@ -12,7 +12,7 @@ export function initialHintState(): HintState {
 }
 
 /**
- * BYTE never blurts out the answer. Levels 1-4 are free (idea, concept, pseudocode, partial
+ * Master Pyron never blurts out the answer. Levels 1-4 are free (idea, concept, pseudocode, partial
  * code); level 5 (full solution) requires the caller to pass `confirm: true` after the player
  * explicitly asks again, per the spec's progressive hint rule.
  */

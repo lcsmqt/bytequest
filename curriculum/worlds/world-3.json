@@ -1,0 +1,188 @@
+{
+  "id": "world-3",
+  "order": 3,
+  "title": "Cavernas da Condição",
+  "subtitle": "Onde Pyra escolhe caminhos",
+  "lessons": [
+    {
+      "id": "w3-l1-if-else",
+      "world": "world-3",
+      "title": "O Portão que Decide",
+      "story": "O portão verde (IF) e o vermelho (ELSE) das Cavernas perguntam o nível de quem se aproxima antes de abrir. Pyron: \"if e else fazem o código escolher um caminho, como esses portões tentam fazer.\"",
+      "learningObjectives": ["Usar if e else para desviar o fluxo do programa"],
+      "explanation": "if condicao: executa um bloco somente se a condição for True. else: executa um bloco alternativo caso contrário. O bloco depois dos dois-pontos precisa estar indentado (recuado).",
+      "examples": ["nivel = 7\nif nivel >= 5:\n    print(\"Portão aberto\")\nelse:\n    print(\"Ainda não\")"],
+      "challenge": {
+        "id": "w3-c1-if-else",
+        "title": "Convença o Portão",
+        "instructions": "A variável nivel = 6 já existe. Use if/else: se nivel for maior ou igual a 5, exiba Portão aberto; senão, exiba Você ainda não está preparado.",
+        "starterCode": "nivel = 6\n# escreva o if/else abaixo\n",
+        "hints": [
+          "Comece com if nivel >= 5:",
+          "Lembre-se da indentação (recuo) depois dos dois-pontos.",
+          "if nivel >= 5:\n    print(\"Portão aberto\")\nelse:\n    print(\"Você ainda não está preparado\")",
+          "Confira se o texto está exatamente igual, sem erros de digitação.",
+          "A resposta completa é:\nnivel = 6\nif nivel >= 5:\n    print(\"Portão aberto\")\nelse:\n    print(\"Você ainda não está preparado\")"
+        ],
+        "tests": [
+          { "code": "assert 'Portão aberto' in _bq_stdout", "description": "O portão exibe 'Portão aberto'" }
+        ],
+        "xp": 20,
+        "successMessage": "O portão desliza e se abre. Pip: \"Viu? Ele só precisava de uma decisão.\""
+      },
+      "prerequisites": [],
+      "concepts": ["condicionais"],
+      "runeWord": "if"
+    },
+    {
+      "id": "w3-l2-elif",
+      "world": "world-3",
+      "title": "O Guarda de Três Respostas",
+      "story": "Sir Boolean, guardião dos portões, reage de formas diferentes dependendo da sua reputação. Pyron: \"Quando existem mais de duas opções, usamos elif entre o if e o else.\"",
+      "learningObjectives": ["Encadear condições com elif"],
+      "explanation": "elif (contração de 'else if') testa outra condição quando a anterior é False. Você pode encadear vários elif entre um if e um else. Python testa de cima para baixo e para no primeiro True.",
+      "examples": ["reputacao = 40\nif reputacao >= 70:\n    print(\"Aliado\")\nelif reputacao >= 30:\n    print(\"Neutro\")\nelse:\n    print(\"Hostil\")"],
+      "challenge": {
+        "id": "w3-c2-elif",
+        "title": "Acalme o Guarda",
+        "instructions": "A variável reputacao = 50 já existe. Exiba Aliado se reputacao for >= 70, Neutro se for >= 30, ou Hostil caso contrário.",
+        "starterCode": "reputacao = 50\n# escreva o if/elif/else abaixo\n",
+        "hints": [
+          "Você vai precisar de if, elif e else, nessa ordem.",
+          "Teste a condição maior primeiro (>= 70).",
+          "if reputacao >= 70:\n    print(\"Aliado\")\nelif reputacao >= 30:\n    print(\"Neutro\")\nelse:\n    print(\"Hostil\")",
+          "Com reputacao = 50, o resultado esperado é 'Neutro'.",
+          "A resposta completa é:\nreputacao = 50\nif reputacao >= 70:\n    print(\"Aliado\")\nelif reputacao >= 30:\n    print(\"Neutro\")\nelse:\n    print(\"Hostil\")"
+        ],
+        "tests": [
+          { "code": "assert 'Neutro' in _bq_stdout", "description": "Com reputação 50, exibe 'Neutro'" }
+        ],
+        "xp": 25,
+        "successMessage": "Sir Boolean relaxa os ombros. \"Neutro, então. Pode passar com cautela.\""
+      },
+      "prerequisites": ["w3-l1-if-else"],
+      "concepts": ["condicionais", "elif"],
+      "runeWord": "elif"
+    },
+    {
+      "id": "w3-l3-condicoes-compostas",
+      "world": "world-3",
+      "title": "A Fechadura de Duas Provas",
+      "story": "A runa da plataforma vermelha exige duas provas ao mesmo tempo. Pyron: \"Lembra dos operadores lógicos da Forja? Combine-os dentro de um if.\"",
+      "learningObjectives": ["Combinar and/or dentro de uma condição if"],
+      "explanation": "Você pode usar and, or e not diretamente dentro da condição de um if, sem precisar criar uma variável separada antes.",
+      "examples": ["tem_chave = True\nnivel = 8\nif tem_chave and nivel >= 5:\n    print(\"Passagem liberada\")"],
+      "challenge": {
+        "id": "w3-c3-condicoes-compostas",
+        "title": "Prove seu Valor",
+        "instructions": "As variáveis tem_mapa = True e nivel = 4 já existem. Exiba Passagem liberada somente se tem_mapa for True E nivel for maior ou igual a 3; caso contrário exiba Faltam provas.",
+        "starterCode": "tem_mapa = True\nnivel = 4\n# escreva a condição composta abaixo\n",
+        "hints": [
+          "Combine as duas condições com and dentro do if.",
+          "if tem_mapa and nivel >= 3:",
+          "if tem_mapa and nivel >= 3:\n    print(\"Passagem liberada\")\nelse:\n    print(\"Faltam provas\")",
+          "Com tem_mapa=True e nivel=4, o resultado esperado é 'Passagem liberada'.",
+          "A resposta completa é:\ntem_mapa = True\nnivel = 4\nif tem_mapa and nivel >= 3:\n    print(\"Passagem liberada\")\nelse:\n    print(\"Faltam provas\")"
+        ],
+        "tests": [
+          { "code": "assert 'Passagem liberada' in _bq_stdout", "description": "Exibe 'Passagem liberada'" }
+        ],
+        "xp": 25,
+        "successMessage": "As duas provas se encaixam. A fechadura gira e libera a passagem."
+      },
+      "prerequisites": ["w3-l2-elif"],
+      "concepts": ["condicionais", "operadores-logicos"],
+      "runeWord": "and"
+    }
+  ],
+  "boss": {
+    "id": "w3-boss-dungeon",
+    "world": "world-3",
+    "title": "O Sistema da Masmorra",
+    "runeWord": "else",
+    "intro": "O santuário da serpente tem três respostas possíveis, dependendo do que você traz. Pyron: \"Monte o sistema de decisão completo: ele precisa cobrir os três casos.\"",
+    "challenge": {
+      "id": "w3-boss-challenge",
+      "title": "Monte o Sistema de Decisão",
+      "instructions": "As variáveis tem_tocha = True e tem_espada = False já existem. Exiba Exploração segura se tiver tocha E espada; Exploração arriscada se tiver só a tocha; ou Não entre sem tocha caso não tenha tocha.",
+      "starterCode": "tem_tocha = True\ntem_espada = False\n# escreva o sistema de decisão abaixo\n",
+      "hints": [
+        "São três resultados possíveis: use if, elif e else.",
+        "A primeira condição deve exigir as duas coisas com and.",
+        "if tem_tocha and tem_espada:\n    print(\"Exploração segura\")\nelif tem_tocha:\n    print(\"Exploração arriscada\")\nelse:\n    print(\"Não entre sem tocha\")",
+        "Com tem_tocha=True e tem_espada=False, o resultado esperado é 'Exploração arriscada'.",
+        "A resposta completa é:\ntem_tocha = True\ntem_espada = False\nif tem_tocha and tem_espada:\n    print(\"Exploração segura\")\nelif tem_tocha:\n    print(\"Exploração arriscada\")\nelse:\n    print(\"Não entre sem tocha\")"
+      ],
+      "tests": [
+        { "code": "assert 'Exploração arriscada' in _bq_stdout", "description": "Com tocha mas sem espada, exibe 'Exploração arriscada'" }
+      ],
+      "xp": 60,
+      "successMessage": "O sistema da masmorra reconhece sua preparação. Mais um Fragmento da Fonte é recuperado."
+    },
+    "victoryText": "As Cavernas da Condição voltam a apontar caminhos com clareza. Uma trilha se abre rumo à Floresta dos Loops."
+  },
+  "bugs": [
+    {
+      "id": "w3-bug-doispontos",
+      "monster": "bat",
+      "name": "Exception Bat",
+      "taunt": [
+        "Kreee! Um if sem dois-pontos me deixa entrar por qualquer fresta!"
+      ],
+      "challenge": {
+        "id": "w3-bug-doispontos-challenge",
+        "title": "Feche o if",
+        "instructions": "Falta um símbolo na condição. Corrija o código para exibir: Passagem liberada",
+        "starterCode": "nivel = 5\nif nivel >= 5\n    print(\"Passagem liberada\")\n",
+        "hints": [
+          "Todo if termina a linha da condição com um símbolo especial.",
+          "Falta os dois-pontos (:) no fim da linha do if.",
+          "if nivel >= 5:",
+          "nivel = 5\nif nivel >= 5:\n    print(\"Passagem liberada\")",
+          "A resposta completa é:\nnivel = 5\nif nivel >= 5:\n    print(\"Passagem liberada\")"
+        ],
+        "tests": [
+          {
+            "code": "assert 'Passagem liberada' in _bq_stdout",
+            "description": "Exibe 'Passagem liberada'"
+          }
+        ],
+        "xp": 15,
+        "successMessage": "O morcego guincha e foge pelas cavernas. O if volta a funcionar."
+      }
+    },
+    {
+      "id": "w3-bug-and",
+      "monster": "bat",
+      "name": "Exception Bat",
+      "taunt": [
+        "Kreee! Uma chave OU um mapa? Fácil demais! O cofre exige as duas coisas!"
+      ],
+      "challenge": {
+        "id": "w3-bug-and-challenge",
+        "title": "Duas Provas",
+        "instructions": "O cofre só deve abrir com a chave E o mapa, e você só tem a chave. Corrija a condição: deve exibir Cofre trancado",
+        "starterCode": "tem_chave = True\ntem_mapa = False\nif tem_chave or tem_mapa:\n    print(\"Cofre aberto\")\nelse:\n    print(\"Cofre trancado\")\n",
+        "hints": [
+          "Uma condição com 'or' basta que UMA parte seja verdadeira.",
+          "Para exigir as duas partes, use o operador and.",
+          "if tem_chave and tem_mapa:",
+          "tem_chave = True\ntem_mapa = False\nif tem_chave and tem_mapa:\n    print(\"Cofre aberto\")\nelse:\n    print(\"Cofre trancado\")",
+          "A resposta completa é:\ntem_chave = True\ntem_mapa = False\nif tem_chave and tem_mapa:\n    print(\"Cofre aberto\")\nelse:\n    print(\"Cofre trancado\")"
+        ],
+        "tests": [
+          {
+            "code": "assert 'Cofre trancado' in _bq_stdout",
+            "description": "Exibe 'Cofre trancado'"
+          },
+          {
+            "code": "assert 'Cofre aberto' not in _bq_stdout",
+            "description": "Não abre o cofre"
+          }
+        ],
+        "xp": 20,
+        "successMessage": "O morcego bate as asas e desaparece. A lógica agora exige as duas provas."
+      }
+    }
+  ]
+}

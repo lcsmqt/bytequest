@@ -11,6 +11,8 @@ export interface SaveData {
   level: number;
   completedLessons: string[];
   completedBosses: string[];
+  /** Debug encounters already won (bugs stay gone). */
+  defeatedBugs: string[];
   currentWorld: string;
   mastery: Record<string, ConceptMastery>;
   achievements: string[];
@@ -23,7 +25,7 @@ export interface SaveData {
   updatedAt: string;
 }
 
-export const CURRENT_SAVE_VERSION = 1;
+export const CURRENT_SAVE_VERSION = 2; // v2: defeatedBugs
 
 export function createDefaultSave(playerName: string): SaveData {
   return {
@@ -33,6 +35,7 @@ export function createDefaultSave(playerName: string): SaveData {
     level: 1,
     completedLessons: [],
     completedBosses: [],
+    defeatedBugs: [],
     currentWorld: "world-0",
     mastery: {},
     achievements: [],

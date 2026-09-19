@@ -1,0 +1,197 @@
+{
+  "id": "world-2",
+  "order": 2,
+  "title": "Forja dos Operadores",
+  "subtitle": "Onde Pyra faz suas contas",
+  "lessons": [
+    {
+      "id": "w2-l1-aritmetica",
+      "world": "world-2",
+      "title": "As Quatro Forjas",
+      "story": "As bigornas da Forja calculam o dano de cada arma. Na bigorna de fogo, a runa travou no meio da conta. Pyron: \"Os operadores aritméticos fazem as contas. Vamos destravar essa bigorna.\"",
+      "learningObjectives": ["Usar +, -, *, /, // e %"],
+      "explanation": "Python soma (+), subtrai (-), multiplica (*) e divide (/) normalmente (/ sempre retorna float). // faz divisão inteira (descarta o resto) e % retorna o resto da divisão — muito usado para saber se um número é par (n % 2 == 0).",
+      "examples": ["print(7 // 2)", "print(7 % 2)"],
+      "challenge": {
+        "id": "w2-c1-aritmetica",
+        "title": "Destrave a Bigorna",
+        "instructions": "Crie dano_base = 17 e escudo = 5. Calcule dano_final = dano_base - escudo e exiba: Dano final: 12 (f-string).",
+        "starterCode": "# crie dano_base, escudo e calcule dano_final\n",
+        "hints": [
+          "Subtração em Python usa o sinal -.",
+          "dano_base = 17\nescudo = 5\ndano_final = dano_base - escudo",
+          "Depois exiba com uma f-string.",
+          "dano_base = 17\nescudo = 5\ndano_final = dano_base - escudo\nprint(f\"Dano final: {dano_final}\")",
+          "A resposta completa é:\ndano_base = 17\nescudo = 5\ndano_final = dano_base - escudo\nprint(f\"Dano final: {dano_final}\")"
+        ],
+        "tests": [
+          { "code": "assert dano_final == 12", "description": "dano_final vale 12" },
+          { "code": "assert 'Dano final: 12' in _bq_stdout", "description": "O texto exibido é 'Dano final: 12'" }
+        ],
+        "xp": 20,
+        "successMessage": "A bigorna volta a arder e a runa revela: + − × ÷. Pip aprova o cálculo."
+      },
+      "prerequisites": [],
+      "concepts": ["operadores-aritmeticos"],
+      "runeWord": "+ − × ÷"
+    },
+    {
+      "id": "w2-l2-comparacao",
+      "world": "world-2",
+      "title": "O Selo que Compara",
+      "story": "Na bigorna de gelo, um selo só se rompe se o valor de energia for grande o bastante. Pyron: \"Operadores de comparação sempre respondem True ou False. É exatamente disso que o selo precisa.\"",
+      "learningObjectives": ["Usar ==, !=, <, >, <=, >="],
+      "explanation": "Comparações em Python (==, !=, <, >, <=, >=) sempre produzem um valor booleano: True ou False. Repare que == compara igualdade, enquanto = apenas atribui um valor.",
+      "examples": ["energia = 80\nprint(energia >= 50)"],
+      "challenge": {
+        "id": "w2-c2-comparacao",
+        "title": "Teste o Selo",
+        "instructions": "Crie energia = 80. Crie pode_passar comparando se energia é maior ou igual a 50. Exiba: Pode passar: True (f-string).",
+        "starterCode": "# crie energia, pode_passar e exiba o resultado\n",
+        "hints": [
+          "Comparação usa >=, não apenas >.",
+          "pode_passar = energia >= 50",
+          "energia = 80\npode_passar = energia >= 50",
+          "energia = 80\npode_passar = energia >= 50\nprint(f\"Pode passar: {pode_passar}\")",
+          "A resposta completa é:\nenergia = 80\npode_passar = energia >= 50\nprint(f\"Pode passar: {pode_passar}\")"
+        ],
+        "tests": [
+          { "code": "assert pode_passar is True", "description": "pode_passar é True" },
+          { "code": "assert 'Pode passar: True' in _bq_stdout", "description": "O texto exibido é 'Pode passar: True'" }
+        ],
+        "xp": 20,
+        "successMessage": "O selo reconhece o valor e destrava."
+      },
+      "prerequisites": ["w2-l1-aritmetica"],
+      "concepts": ["operadores-comparacao"],
+      "runeWord": "> == <"
+    },
+    {
+      "id": "w2-l3-logicos",
+      "world": "world-2",
+      "title": "As Duas Chaves",
+      "story": "A bigorna do raio guarda uma fechadura dupla: só abre se DUAS condições forem verdadeiras ao mesmo tempo. Pyron: \"and, or e not combinam condições. É exatamente isso que essa fechadura pede.\"",
+      "learningObjectives": ["Usar and, or e not para combinar condições"],
+      "explanation": "and é True somente se ambos os lados forem True. or é True se pelo menos um lado for True. not inverte um valor booleano (not True vira False).",
+      "examples": ["tem_chave = True\ntem_senha = False\nprint(tem_chave and tem_senha)"],
+      "challenge": {
+        "id": "w2-c3-logicos",
+        "title": "Abra a Fechadura Dupla",
+        "instructions": "As variáveis tem_chave = True e tem_senha = True já existem. Crie destravado combinando as duas com and, e exiba: Destravado: True (f-string).",
+        "starterCode": "tem_chave = True\ntem_senha = True\n# crie destravado e exiba o resultado\n",
+        "hints": [
+          "Use and para exigir as duas condições.",
+          "destravado = tem_chave and tem_senha",
+          "tem_chave = True\ntem_senha = True\ndestravado = tem_chave and tem_senha",
+          "tem_chave = True\ntem_senha = True\ndestravado = tem_chave and tem_senha\nprint(f\"Destravado: {destravado}\")",
+          "A resposta completa é:\ntem_chave = True\ntem_senha = True\ndestravado = tem_chave and tem_senha\nprint(f\"Destravado: {destravado}\")"
+        ],
+        "tests": [
+          { "code": "assert destravado is True", "description": "destravado é True" },
+          { "code": "assert 'Destravado: True' in _bq_stdout", "description": "O texto exibido é 'Destravado: True'" }
+        ],
+        "xp": 25,
+        "successMessage": "As duas chaves giram juntas. A fechadura se abre."
+      },
+      "prerequisites": ["w2-l2-comparacao"],
+      "concepts": ["operadores-logicos"],
+      "runeWord": "and or not"
+    }
+  ],
+  "boss": {
+    "id": "w2-boss-golem-aritmetico",
+    "world": "world-2",
+    "title": "O Golem Aritmético",
+    "runeWord": "golem",
+    "intro": "Da grande fornalha ergue-se um golem de pedra e brasa. Pyron: \"Ele só entende números. Calcule o dano do golpe crítico corretamente e ele vai reconhecer sua força.\"",
+    "challenge": {
+      "id": "w2-boss-challenge",
+      "title": "Calcule o Golpe Crítico",
+      "instructions": "As variáveis ataque = 12 e multiplicador = 3 já existem. Calcule dano_critico multiplicando ataque por multiplicador. Depois crie eh_fatal comparando se dano_critico é maior que 30. Exiba: Dano crítico: 36 | Fatal: True (f-string).",
+      "starterCode": "ataque = 12\nmultiplicador = 3\n# calcule dano_critico e eh_fatal, depois exiba o resultado\n",
+      "hints": [
+        "Multiplicação usa *.",
+        "dano_critico = ataque * multiplicador",
+        "eh_fatal = dano_critico > 30",
+        "dano_critico = ataque * multiplicador\neh_fatal = dano_critico > 30\nprint(f\"Dano crítico: {dano_critico} | Fatal: {eh_fatal}\")",
+        "A resposta completa é:\ndano_critico = ataque * multiplicador\neh_fatal = dano_critico > 30\nprint(f\"Dano crítico: {dano_critico} | Fatal: {eh_fatal}\")"
+      ],
+      "tests": [
+        { "code": "assert dano_critico == 36", "description": "dano_critico vale 36" },
+        { "code": "assert eh_fatal is True", "description": "eh_fatal é True" },
+        { "code": "assert 'Dano crítico: 36 | Fatal: True' in _bq_stdout", "description": "O texto exibido está correto" }
+      ],
+      "xp": 60,
+      "successMessage": "O golem racha ao meio e a fornalha se acalma. Mais um Fragmento da Fonte é recuperado."
+    },
+    "victoryText": "A Forja volta a calcular com precisão. Uma trilha se abre rumo às Cavernas da Condição."
+  },
+  "bugs": [
+    {
+      "id": "w2-bug-precedencia",
+      "monster": "imp",
+      "name": "Logic Imp",
+      "taunt": [
+        "Hehe! Multiplicação vem antes da soma, sabia? Seu dano nunca vai ser o que você quer!"
+      ],
+      "challenge": {
+        "id": "w2-bug-precedencia-challenge",
+        "title": "Ordene as Contas",
+        "instructions": "O dano deve ser (7 + 3) vezes 2. Corrija o cálculo para exibir: Dano: 20",
+        "starterCode": "dano = 7 + 3 * 2\nprint(f\"Dano: {dano}\")\n",
+        "hints": [
+          "A multiplicação é feita antes da soma, a menos que você use parênteses.",
+          "Agrupe a soma com parênteses antes de multiplicar.",
+          "dano = (7 + 3) * 2",
+          "dano = (7 + 3) * 2\nprint(f\"Dano: {dano}\")",
+          "A resposta completa é:\ndano = (7 + 3) * 2\nprint(f\"Dano: {dano}\")"
+        ],
+        "tests": [
+          {
+            "code": "assert dano == 20",
+            "description": "dano vale 20"
+          },
+          {
+            "code": "assert 'Dano: 20' in _bq_stdout",
+            "description": "Exibe 'Dano: 20'"
+          }
+        ],
+        "xp": 15,
+        "successMessage": "O diabrete solta uma fagulha e vira cinzas. As contas fecham."
+      }
+    },
+    {
+      "id": "w2-bug-igualdade",
+      "monster": "imp",
+      "name": "Logic Imp",
+      "taunt": [
+        "Hehe! Um = só guarda valores, não compara. Como vai saber se a vida acabou?"
+      ],
+      "challenge": {
+        "id": "w2-bug-igualdade-challenge",
+        "title": "Compare de Verdade",
+        "instructions": "morto deve ser True quando vida for 0. Corrija a linha para exibir: Morto: True",
+        "starterCode": "vida = 0\nmorto = vida = 0\nprint(f\"Morto: {morto}\")\n",
+        "hints": [
+          "Um sinal = atribui; para comparar dois valores existe outro operador.",
+          "Comparar igualdade usa dois sinais de igual.",
+          "morto = vida == 0",
+          "vida = 0\nmorto = vida == 0\nprint(f\"Morto: {morto}\")",
+          "A resposta completa é:\nvida = 0\nmorto = vida == 0\nprint(f\"Morto: {morto}\")"
+        ],
+        "tests": [
+          {
+            "code": "assert morto is True",
+            "description": "morto é True"
+          },
+          {
+            "code": "assert 'Morto: True' in _bq_stdout",
+            "description": "Exibe 'Morto: True'"
+          }
+        ],
+        "xp": 15,
+        "successMessage": "O Imp estala e desaparece. Agora a comparação responde True ou False."
+      }
+    }
+  ]
+}

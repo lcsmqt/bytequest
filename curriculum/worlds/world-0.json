@@ -8,13 +8,13 @@
       "id": "w0-l1-primeira-linha",
       "world": "world-0",
       "title": "A Primeira Linha",
-      "story": "BYTE flutua até você em meio à escuridão do terminal abandonado. \"Este lugar já foi capaz de conversar com qualquer pessoa em Pyra. Agora nem mesmo consegue dizer uma única palavra. Você consegue fazer o terminal falar de novo?\"",
+      "story": "Pyron toca uma runa apagada, coberta de glifos que você não reconhece. \"Esta é a língua antiga de Pyra, Byte: Python. Antes da corrupção, tudo aqui obedecia a ela. Cada runa que você decifrar devolve uma palavra ao mundo. Comece fazendo esta runa falar de novo.\"",
       "learningObjectives": ["Entender o que é um programa", "Usar a função print()"],
       "explanation": "Um programa é uma sequência de instruções que o computador executa, uma de cada vez, de cima para baixo. Python entende comandos escritos em texto simples. O comando print(\"...\") exibe um texto na tela. O texto precisa ficar entre aspas.",
       "examples": ["print(\"Olá, Pyra!\")", "print(\"BYTE está online.\")"],
       "challenge": {
         "id": "w0-c1-primeira-linha",
-        "title": "Reative o Terminal",
+        "title": "Desperte a Runa",
         "instructions": "Escreva um comando que exiba a mensagem: Olá, Pyra!",
         "starterCode": "# Escreva seu código abaixo\n",
         "hints": [
@@ -25,19 +25,20 @@
           "A resposta completa é: print(\"Olá, Pyra!\")"
         ],
         "tests": [
-          { "code": "assert 'Olá, Pyra!' in _bq_stdout", "description": "O terminal exibe 'Olá, Pyra!'" }
+          { "code": "assert 'Olá, Pyra!' in _bq_stdout", "description": "A runa exibe 'Olá, Pyra!'" }
         ],
         "xp": 20,
-        "successMessage": "As luzes do terminal piscam e voltam a brilhar. BYTE comemora: \"Você fez isso!\""
+        "successMessage": "Os glifos se rearranjam e revelam a primeira palavra: print. Runas cianas acendem ao redor e Pip flutua em círculos, radiante: \"Você fez isso!\""
       },
       "prerequisites": [],
-      "concepts": ["print", "sintaxe-basica"]
+      "concepts": ["print", "sintaxe-basica"],
+      "runeWord": "print"
     },
     {
       "id": "w0-l2-comentarios",
       "world": "world-0",
       "title": "Anotações Secretas",
-      "story": "BYTE mostra um painel cheio de anotações apagadas. \"Os antigos engenheiros deixavam lembretes no código. Isso ajuda a lembrar por que uma linha existe, sem afetar o programa.\"",
+      "story": "Ao lado da runa, uma placa de pedra tem anotações apagadas pelo tempo. Pyron: \"Os antigos mestres deixavam lembretes junto do código. Um comentário explica por que uma linha existe, sem alterar a magia.\"",
       "learningObjectives": ["Entender comentários", "Diferenciar código de comentário"],
       "explanation": "Uma linha que começa com # é um comentário: o Python a ignora completamente ao executar. Comentários servem para explicar o código para humanos, não para o computador.",
       "examples": ["# Isso é um comentário\nprint(\"Isso é executado\")"],
@@ -57,16 +58,17 @@
           { "code": "assert 'Painel online' in _bq_stdout", "description": "O painel exibe 'Painel online'" }
         ],
         "xp": 15,
-        "successMessage": "BYTE aprova: \"Boas anotações vão ajudar quem ler este código depois — até você mesmo, no futuro!\""
+        "successMessage": "Pyron aprova com um aceno: \"Boas anotações vão ajudar quem ler este código depois — até você mesmo, no futuro!\""
       },
       "prerequisites": ["w0-l1-primeira-linha"],
-      "concepts": ["comentarios"]
+      "concepts": ["comentarios"],
+      "runeWord": "# nota"
     },
     {
       "id": "w0-l3-leitura-erros",
       "world": "world-0",
       "title": "A Língua dos Erros",
-      "story": "Um alarme dispara. BYTE não entra em pânico: \"Um erro não é o fim do mundo — é uma mensagem. O Python está tentando te dizer exatamente o que deu errado e em qual linha.\"",
+      "story": "Uma runa vermelha pisca e cospe uma mensagem estranha. Pyron mantém a calma: \"Um erro não é o fim do mundo, Byte — é uma mensagem. O Python está tentando te dizer exatamente o que deu errado e em qual linha.\"",
       "learningObjectives": ["Ler uma mensagem de erro simples", "Corrigir um SyntaxError"],
       "explanation": "Quando o código tem um problema, o Python mostra um traceback: o tipo do erro (ex: SyntaxError) e onde ele aconteceu. Um erro comum de iniciante é esquecer de fechar as aspas ou os parênteses.",
       "examples": ["print(\"faltou fechar"],
@@ -83,23 +85,25 @@
           "A resposta completa é: print(\"Sistema estável\")"
         ],
         "tests": [
-          { "code": "assert 'Sistema estável' in _bq_stdout", "description": "O terminal exibe 'Sistema estável'" }
+          { "code": "assert 'Sistema estável' in _bq_stdout", "description": "A runa exibe 'Sistema estável'" }
         ],
         "xp": 20,
-        "successMessage": "O alarme para. BYTE: \"Viu? O erro só estava te dizendo onde olhar.\""
+        "successMessage": "A runa vermelha se acalma e volta ao ciano. Pip pisca de alívio: \"Viu? O erro só estava te dizendo onde olhar.\""
       },
       "prerequisites": ["w0-l1-primeira-linha"],
-      "concepts": ["erros", "sintaxe-basica"]
+      "concepts": ["erros", "sintaxe-basica"],
+      "runeWord": "erro"
     }
   ],
   "boss": {
     "id": "w0-boss-terminal-corrompido",
     "world": "world-0",
-    "title": "Terminal Corrompido",
-    "intro": "O terminal central pulsa com uma luz vermelha. Fragmentos de código corrompido flutuam na tela. BYTE: \"Este é o guardião do Primeiro Shell. Mostre a ele que você domina o básico.\"",
+    "title": "Runa Corrompida",
+    "runeWord": "shell",
+    "intro": "A runa central pulsa com uma luz vermelha. Fragmentos de código corrompido flutuam sobre os glifos. Pyron: \"Este é o guardião do Primeiro Shell, Byte. Mostre a ele que você domina o básico.\"",
     "challenge": {
       "id": "w0-boss-challenge",
-      "title": "Desperte o Terminal Central",
+      "title": "Desperte a Runa Central",
       "instructions": "Escreva um comentário descrevendo o que o código faz e depois exiba as mensagens: Núcleo local restaurado e depois Pyra aguarda, cada uma em uma linha.",
       "starterCode": "# descreva o que este script faz\n",
       "hints": [
@@ -116,6 +120,67 @@
       "xp": 50,
       "successMessage": "O vermelho vira azul. O Primeiro Shell desperta por completo."
     },
-    "victoryText": "O Terminal Corrompido se estabiliza. Uma porta luminosa se abre para o Vale das Variáveis. Você recebe o primeiro Fragmento da Fonte."
-  }
+    "victoryText": "A Runa Corrompida se estabiliza. Uma porta luminosa se abre para o Vale das Variáveis. Você recebe o primeiro Fragmento da Fonte."
+  },
+  "bugs": [
+    {
+      "id": "w0-bug-aspas",
+      "monster": "slime",
+      "name": "Syntax Slime",
+      "taunt": [
+        "Glub! Comi uma aspa do seu print — agora o Python não entende mais nada!",
+        "Conserte o código antes que eu engula o resto."
+      ],
+      "challenge": {
+        "id": "w0-bug-aspas-challenge",
+        "title": "Restaure a Aspa",
+        "instructions": "O Syntax Slime engoliu uma aspa. Corrija o código para exibir: Olá, Pyra!",
+        "starterCode": "print(\"Olá, Pyra!)\n",
+        "hints": [
+          "O texto do print precisa começar e terminar com aspas.",
+          "Falta uma aspa de fechamento antes do parêntese.",
+          "print(\"...\")",
+          "print(\"Olá, Pyra!\")",
+          "A resposta completa é:\nprint(\"Olá, Pyra!\")"
+        ],
+        "tests": [
+          {
+            "code": "assert 'Olá, Pyra!' in _bq_stdout",
+            "description": "Exibe 'Olá, Pyra!'"
+          }
+        ],
+        "xp": 10,
+        "successMessage": "O slime se desmancha numa poça verde. O print volta a funcionar."
+      }
+    },
+    {
+      "id": "w0-bug-parenteses",
+      "monster": "slime",
+      "name": "Syntax Slime",
+      "taunt": [
+        "Glub glub! Sumi com seus parênteses. No Python de hoje, print sem parênteses não roda!"
+      ],
+      "challenge": {
+        "id": "w0-bug-parenteses-challenge",
+        "title": "Devolva os Parênteses",
+        "instructions": "O print abaixo foi escrito no estilo antigo. Corrija-o para exibir: Slime derrotado",
+        "starterCode": "print \"Slime derrotado\"\n",
+        "hints": [
+          "Em Python 3, print é uma função: ela é chamada com parênteses.",
+          "Coloque o texto dentro de print( ... ).",
+          "print(\"...\")",
+          "print(\"Slime derrotado\")",
+          "A resposta completa é:\nprint(\"Slime derrotado\")"
+        ],
+        "tests": [
+          {
+            "code": "assert 'Slime derrotado' in _bq_stdout",
+            "description": "Exibe 'Slime derrotado'"
+          }
+        ],
+        "xp": 10,
+        "successMessage": "Plop! O slime estoura em bolhas e os parênteses voltam ao lugar."
+      }
+    }
+  ]
 }

@@ -28,15 +28,30 @@ export interface Lesson {
   challenge: Challenge;
   prerequisites: string[];
   concepts: string[];
+  /** What the rune "deciphers" into on success (defaults to concepts[0]) — a reader-friendly word like "variável". */
+  runeWord?: string;
 }
 
 export interface Boss {
   id: string;
   world: string;
   title: string;
+  /** Same idea as Lesson.runeWord; defaults to the boss title. */
+  runeWord?: string;
   intro: string;
   challenge: Challenge;
   victoryText: string;
+}
+
+/** A roaming debug encounter: a monster that guards a piece of broken code. */
+export interface Bug {
+  id: string;
+  /** Sprite key in enemySheets.json: slime | wraith | imp | bat | goblin. */
+  monster: string;
+  name: string;
+  /** What the monster says when it catches Byte. */
+  taunt: string[];
+  challenge: Challenge;
 }
 
 export interface World {
@@ -46,4 +61,5 @@ export interface World {
   subtitle: string;
   lessons: Lesson[];
   boss: Boss;
+  bugs?: Bug[];
 }

@@ -2,7 +2,7 @@
   --bq-bg: #0b0e14;
   --bq-panel: #111826;
   --bq-panel-border: #2c3a55;
-  --bq-accent: #3ee08c;
+  --bq-accent: #4fd8ff;
   --bq-accent-2: #ffd24c;
   --bq-danger: #ff5c5c;
   --bq-text: #e8ecf4;
@@ -39,11 +39,18 @@ body {
 }
 
 #game-root {
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+#game-root canvas {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
 }
 
 #loading-overlay {
@@ -97,6 +104,31 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.bq-rune {
+  padding: 1rem 1rem 0.25rem;
+  font-size: calc(2rem * var(--bq-font-scale));
+  letter-spacing: 0.35em;
+  text-align: center;
+  color: var(--bq-accent);
+  text-shadow: 0 0 10px var(--bq-accent), 0 0 24px rgba(79, 216, 255, 0.5);
+  animation: bq-rune-pulse 2.4s ease-in-out infinite;
+}
+
+.bq-rune.deciphered {
+  font-family: "JetBrains Mono", monospace;
+  letter-spacing: 0.1em;
+  color: var(--bq-accent-2);
+  text-shadow: 0 0 12px var(--bq-accent-2);
+}
+
+@keyframes bq-rune-pulse {
+  50% { opacity: 0.6; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bq-rune { animation: none; }
 }
 
 .bq-terminal__story {
@@ -192,11 +224,16 @@ body {
 .bq-modal {
   position: absolute;
   inset: 0;
-  display: flex;
+  z-index: 100;
+  display: none;
   align-items: center;
   justify-content: center;
   background: rgba(5, 8, 14, 0.85);
-  z-index: 60;
+  pointer-events: auto;
+}
+
+.bq-modal.open {
+  display: flex;
 }
 
 .bq-modal__box {
@@ -219,13 +256,47 @@ body {
   border-radius: 4px;
 }
 
+.bq-settings__title {
+  margin: 0;
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.75rem;
+  color: var(--bq-accent);
+}
+
+.bq-settings__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.9rem;
+}
+
+.bq-settings__row select {
+  font: inherit;
+  background: #0d1420;
+  border: 1px solid var(--bq-panel-border);
+  color: var(--bq-text);
+  padding: 0.35rem 0.5rem;
+  border-radius: 4px;
+}
+
+.bq-settings__actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+}
+
 .bq-hud {
   position: absolute;
   top: 0.75rem;
   left: 0.75rem;
-  display: flex;
+  right: 0.75rem;
+  display: none;
   align-items: center;
+  flex-wrap: wrap;
   gap: 0.6rem;
+  max-width: calc(100vw - 1.5rem);
   font-family: "JetBrains Mono", monospace;
   font-size: 0.8rem;
   background: rgba(17, 24, 38, 0.85);
@@ -233,6 +304,40 @@ body {
   border-radius: 6px;
   padding: 0.4rem 0.7rem;
   z-index: 30;
+}
+
+.bq-hud.visible {
+  display: flex;
+}
+
+.bq-hud__map {
+  font: inherit;
+  color: var(--bq-accent-2);
+  background: transparent;
+  border: 1px solid var(--bq-panel-border);
+  border-radius: 4px;
+  padding: 0.15rem 0.5rem;
+  cursor: pointer;
+}
+
+.bq-hud__map:hover {
+  border-color: var(--bq-accent-2);
+}
+
+.bq-hud__settings {
+  font: inherit;
+  color: var(--bq-text-dim);
+  background: transparent;
+  border: 1px solid var(--bq-panel-border);
+  border-radius: 4px;
+  padding: 0.15rem 0.45rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.bq-hud__settings:hover {
+  border-color: var(--bq-accent);
+  color: var(--bq-accent);
 }
 
 .bq-hud__bar {
@@ -268,16 +373,40 @@ body {
   bottom: 2rem;
   transform: translateX(-50%);
   width: min(560px, 92vw);
+  max-height: min(42vh, 280px);
+  overflow-y: auto;
   background: var(--bq-panel);
   border: 1px solid var(--bq-panel-border);
   border-radius: 6px;
   padding: 1rem 1.25rem;
   z-index: 45;
   display: none;
+  gap: 1rem;
+  align-items: flex-start;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
 }
 
 .bq-dialogue.open {
-  display: block;
+  display: flex;
+}
+
+.bq-dialogue__portrait {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  object-position: bottom;
+  image-rendering: pixelated;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 6px rgba(79, 216, 255, 0.35));
+}
+
+.bq-dialogue__portrait.hidden {
+  display: none;
+}
+
+.bq-dialogue__body {
+  min-width: 0;
+  flex: 1;
 }
 
 .bq-dialogue__speaker {
@@ -290,6 +419,8 @@ body {
 .bq-dialogue__text {
   margin: 0 0 0.75rem;
   line-height: 1.5;
+  max-height: 9rem;
+  overflow-y: auto;
 }
 
 .bq-dialogue__hint {
@@ -300,6 +431,98 @@ body {
 @media (prefers-reduced-motion: reduce), (max-width: 900px) {
   .bq-terminal {
     grid-template-columns: 1fr;
-    grid-auto-rows: 1fr;
+    grid-template-rows: minmax(180px, 38vh) minmax(220px, 1fr);
+    grid-auto-rows: unset;
   }
+
+  .bq-terminal__editor {
+    min-height: 8rem;
+  }
+}
+
+/* ---- motion polish -------------------------------------------------------------------------- */
+.bq-terminal.open {
+  animation: bq-panel-in 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.bq-dialogue.open {
+  animation: bq-dialogue-in 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes bq-panel-in {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes bq-dialogue-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(14px); }
+  to { opacity: 1; transform: translateX(-50%); }
+}
+
+.bq-dialogue__portrait.talking {
+  animation: bq-talk 0.3s ease-in-out infinite alternate;
+}
+
+@keyframes bq-talk {
+  from { transform: translateY(0); }
+  to { transform: translateY(-2px); }
+}
+
+.bq-hud__bar-fill {
+  transition: width 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.bq-hud.levelup {
+  animation: bq-levelup 0.9s ease-out;
+}
+
+@keyframes bq-levelup {
+  0% { box-shadow: 0 0 0 0 rgba(255, 210, 76, 0.9); transform: scale(1); }
+  30% { box-shadow: 0 0 18px 6px rgba(255, 210, 76, 0.7); transform: scale(1.06); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 210, 76, 0); transform: scale(1); }
+}
+
+/* bug encounter: the monster in the mission pane */
+.bq-enemy {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 1rem 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.8rem;
+  color: #ff8a5c;
+}
+
+.bq-enemy img {
+  height: 72px;
+  image-rendering: pixelated;
+  animation: bq-enemy-idle 1.4s ease-in-out infinite;
+}
+
+.bq-enemy.hit img {
+  animation: bq-enemy-hit 0.45s ease-out;
+  filter: drop-shadow(0 0 8px #ff5c5c);
+}
+
+.bq-enemy.down img {
+  animation: bq-enemy-down 0.7s ease-in forwards;
+}
+
+@keyframes bq-enemy-idle {
+  50% { transform: translateY(-4px) scale(1.03); }
+}
+
+@keyframes bq-enemy-hit {
+  0% { transform: translateX(0) scale(1); }
+  25% { transform: translateX(14px) scale(1.15); }
+  60% { transform: translateX(-6px) scale(1.05); }
+  100% { transform: none; }
+}
+
+@keyframes bq-enemy-down {
+  to { transform: translateY(14px) rotate(50deg) scale(0.2); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bq-terminal.open, .bq-dialogue.open, .bq-hud.levelup, .bq-enemy img, .bq-dialogue__portrait.talking { animation: none; }
 }

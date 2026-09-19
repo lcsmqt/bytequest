@@ -1,229 +1,101 @@
 import Phaser from "phaser";
-import { getWorld, lessonsAvailable } from "@/education/curriculumLoader";
-import type { Lesson, Boss } from "@/types/curriculum";
-import { gameState } from "@/game/systems/GameState";
-import { TerminalPanel } from "@/ui/TerminalPanel";
-import { DialogueBox } from "@/ui/DialogueBox";
-import { Hud } from "@/ui/Hud";
+import { RoomScene, type Backdrop, type Point } from "./RoomScene";
+import academyMask from "../maps/academy.mask.txt?raw";
+import { NPC_SHEETS } from "../sprites";
+import { DRIFT, GLINT, RISE, glow, mist, sparks, summoningCircle, torch } from "../effects";
 
-const ROOM_W = 20;
-const ROOM_H = 12;
-const TILE = 32;
-const SPEED = 140;
+// World px == backdrop px (1344x1024). Coordinates were read off the Academy of Python mockup.
+const SPAWN: Point = { x: 680, y: 930 };
 
-interface LessonStation {
-  lesson: Lesson;
-  sprite: Phaser.GameObjects.Image;
-  prompt: Phaser.GameObjects.Text;
-}
-
-export class World0Scene extends Phaser.Scene {
-  private player!: Phaser.Physics.Arcade.Sprite;
-  private cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
-  private interactKey!: Phaser.Input.Keyboard.Key;
-  private stations: LessonStation[] = [];
-  private bossGate!: { sprite: Phaser.GameObjects.Image; prompt: Phaser.GameObjects.Text; boss: Boss };
-  private byteNpc!: Phaser.GameObjects.Image;
-  private dialogue!: DialogueBox;
-  private terminal!: TerminalPanel;
-  private hud!: Hud;
-  private busy = false;
-  private introShown = false;
-
+/**
+ * Academy of Python courtyard — the first world. The serpent fountain plaza leads up the steps to the sealed
+ * academy door (the boss rune); the three lesson runes stand on the plaza. Same recipe as the other worlds:
+ * mockup backdrop + rect-built collision mask + Phaser ambience + animated apprentices.
+ */
+export class World0Scene extends RoomScene {
   constructor() {
-    super("World0");
+    super({ key: "World0", worldId: "world-0" });
   }
 
-  create(): void {
-    const appRoot = document.getElementById("app")!;
-    this.dialogue = new DialogueBox(appRoot);
-    this.terminal = new TerminalPanel(appRoot);
-    this.hud = new Hud(appRoot);
-    this.hud.update(gameState.current);
-
-    this.buildRoom();
-    this.buildPlayer();
-    this.buildByte();
-    this.buildStations();
-
-    this.cursors = this.input.keyboard!.createCursorKeys();
-    this.interactKey = this.input.keyboard!.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-    this.input.keyboard!.addKey(Phaser.Input.Keyboard.KeyCodes.E).on("down", () => this.tryInteract());
-    this.interactKey.on("down", () => this.tryInteract());
-
-    this.cameras.main.setBounds(0, 0, ROOM_W * TILE, ROOM_H * TILE);
-    this.cameras.main.startFollow(this.player, true, 0.1, 0.1);
-    this.cameras.main.setZoom(1.6);
-
-    this.time.delayedCall(400, () => this.showIntroIfNeeded());
+  protected override introLines(): string[] {
+    return [
+      "As runas da Academia já foram capazes de conversar com qualquer pessoa em Pyra.",
+      "Agora estão apagadas, presas numa língua que ninguém mais entende.",
+      "Aproxime-se de uma runa na praça e pressione E (ou Espaço) para interagir.",
+    ];
   }
 
-  private buildRoom(): void {
-    for (let x = 0; x < ROOM_W; x++) {
-      for (let y = 0; y < ROOM_H; y++) {
-        this.add.image(x * TILE + TILE / 2, y * TILE + TILE / 2, "floor");
-      }
-    }
-    const walls = this.physics.add.staticGroup();
-    for (let x = 0; x < ROOM_W; x++) {
-      walls.create(x * TILE + TILE / 2, TILE / 2, "wall");
-      walls.create(x * TILE + TILE / 2, (ROOM_H - 1) * TILE + TILE / 2, "wall");
-    }
-    for (let y = 0; y < ROOM_H; y++) {
-      walls.create(TILE / 2, y * TILE + TILE / 2, "wall");
-      walls.create((ROOM_W - 1) * TILE + TILE / 2, y * TILE + TILE / 2, "wall");
-    }
-    this.wallsGroup = walls;
+  protected override backdrop(): Backdrop {
+    return { key: "academy", url: "assets/worlds/academy.png", mask: academyMask, cell: 16 };
   }
 
-  private wallsGroup!: Phaser.Physics.Arcade.StaticGroup;
-
-  private buildPlayer(): void {
-    this.player = this.physics.add.sprite(3 * TILE, (ROOM_H - 2) * TILE, "player");
-    this.player.setCollideWorldBounds(false);
-    this.physics.add.collider(this.player, this.wallsGroup);
+  protected override roomSize(): { w: number; h: number } {
+    return { w: 42, h: 32 };
   }
 
-  private buildByte(): void {
-    this.byteNpc = this.add.image(3 * TILE + 40, (ROOM_H - 2) * TILE - 10, "byte");
-    this.tweens.add({ targets: this.byteNpc, y: this.byteNpc.y - 6, duration: 900, yoyo: true, repeat: -1 });
+  protected override worldScale(): number {
+    return 2.2;
   }
 
-  private buildStations(): void {
-    const world = getWorld("world-0");
-    if (!world) return;
-    const startX = 6 * TILE;
-    world.lessons.forEach((lesson, i) => {
-      const x = startX + i * 3 * TILE;
-      const y = (ROOM_H - 2) * TILE;
-      const sprite = this.add.image(x, y, "terminal-locked");
-      const prompt = this.add.text(x, y, "", { fontFamily: '"JetBrains Mono"', fontSize: "11px", color: "#ffd24c" }).setOrigin(0.5).setVisible(false);
-      this.stations.push({ lesson, sprite, prompt });
-    });
-    const bossX = startX + world.lessons.length * 3 * TILE + TILE;
-    const bossSprite = this.add.image(bossX, (ROOM_H - 2) * TILE, "boss-gate");
-    const bossPrompt = this.add
-      .text(bossX, (ROOM_H - 2) * TILE, "", { fontFamily: '"JetBrains Mono"', fontSize: "11px", color: "#ff5c5c" })
-      .setOrigin(0.5)
-      .setVisible(false);
-    this.bossGate = { sprite: bossSprite, prompt: bossPrompt, boss: world.boss };
-    this.refreshStationVisuals();
+  protected override cameraZoom(): number {
+    return 1;
   }
 
-  private refreshStationVisuals(): void {
-    const save = gameState.current;
-    for (const station of this.stations) {
-      const done = save.completedLessons.includes(station.lesson.id);
-      const available = lessonsAvailable(station.lesson, save.completedLessons);
-      station.sprite.setTexture(done ? "terminal-done" : available ? "terminal-active" : "terminal-locked");
-    }
-    const world = getWorld("world-0");
-    const allLessonsDone = world ? world.lessons.every((l) => save.completedLessons.includes(l.id)) : false;
-    const bossDone = save.completedBosses.includes(this.bossGate.boss.id);
-    this.bossGate.sprite.setTint(bossDone ? 0x6a7891 : allLessonsDone ? 0xffffff : 0x555555);
+  protected override spawnPoint(): Point {
+    return SPAWN;
   }
 
-  private showIntroIfNeeded(): void {
-    if (this.introShown) return;
-    this.introShown = true;
-    this.dialogue.say("BYTE", [
-      "Este lugar já foi capaz de conversar com qualquer pessoa em Pyra.",
-      "Agora nem mesmo consegue dizer uma única palavra.",
-      "Ande até um terminal e pressione E (ou Espaço) para interagir.",
-    ]);
+  protected override pyronPosition(): Point {
+    return { x: 520, y: 920 }; // > interact range from spawn so Space does not re-trigger Pyron
   }
 
-  update(): void {
-    if (this.dialogue.isOpen || this.busy) {
-      this.player.setVelocity(0, 0);
-      return;
-    }
-    const body = this.player.body as Phaser.Physics.Arcade.Body;
-    const vx = (this.cursors.left?.isDown ? -1 : 0) + (this.cursors.right?.isDown ? 1 : 0);
-    const vy = (this.cursors.up?.isDown ? -1 : 0) + (this.cursors.down?.isDown ? 1 : 0);
-    body.setVelocity(vx * SPEED, vy * SPEED);
-    if (vx !== 0 || vy !== 0) body.velocity.normalize().scale(SPEED);
-
-    this.updatePrompts();
+  protected override stationPositions(): Point[] {
+    return [
+      { x: 680, y: 800 }, // south of the fountain, between the blue lamps
+      { x: 500, y: 470 }, // left of the fountain
+      { x: 835, y: 470 }, // right of the fountain
+    ];
   }
 
-  private updatePrompts(): void {
-    const RANGE = 44;
-    for (const station of this.stations) {
-      const near = Phaser.Math.Distance.Between(this.player.x, this.player.y, station.sprite.x, station.sprite.y) < RANGE;
-      station.prompt.setPosition(station.sprite.x, station.sprite.y - 24).setVisible(near);
-      if (near) station.prompt.setText("E");
-    }
-    const nearBoss = Phaser.Math.Distance.Between(this.player.x, this.player.y, this.bossGate.sprite.x, this.bossGate.sprite.y) < RANGE + 10;
-    this.bossGate.prompt.setPosition(this.bossGate.sprite.x, this.bossGate.sprite.y - 30).setVisible(nearBoss);
-    if (nearBoss) this.bossGate.prompt.setText("E");
+  protected override bossPosition(): Point {
+    return { x: 675, y: 335 }; // the academy steps: the sealed door
   }
 
-  private tryInteract(): void {
-    if (this.busy || this.dialogue.isOpen) return;
-    const RANGE = 44;
-    const station = this.stations.find(
-      (s) => Phaser.Math.Distance.Between(this.player.x, this.player.y, s.sprite.x, s.sprite.y) < RANGE,
-    );
-    if (station) {
-      this.openLesson(station.lesson);
-      return;
-    }
-    if (Phaser.Math.Distance.Between(this.player.x, this.player.y, this.bossGate.sprite.x, this.bossGate.sprite.y) < RANGE + 10) {
-      this.openBoss();
-    }
+  protected override bugSpawns(): Point[] {
+    return [{ x: 650, y: 680 }, { x: 860, y: 590 }];
   }
 
-  private openLesson(lesson: Lesson): void {
-    const save = gameState.current;
-    if (save.completedLessons.includes(lesson.id)) {
-      this.dialogue.say("BYTE", ["Este terminal já está funcionando perfeitamente. Bom trabalho!"]);
-      return;
-    }
-    if (!lessonsAvailable(lesson, save.completedLessons)) {
-      this.dialogue.say("BYTE", ["Este terminal ainda não vai responder. Termine o anterior primeiro."]);
-      return;
-    }
-    this.busy = true;
-    this.dialogue.say("BYTE", [lesson.story], () => {
-      this.terminal.open(lesson.title, lesson.explanation, lesson.challenge, (outcome) => {
-        gameState.completeLesson({ lesson, hintsUsed: outcome.hintsUsed, attempts: outcome.attempts, succeeded: true });
-        this.hud.update(gameState.current);
-        this.refreshStationVisuals();
-        this.time.delayedCall(1200, () => {
-          this.terminal.close();
-          this.busy = false;
-        });
-      });
-    });
+  protected override buildDecorations(): void {
+    summoningCircle(this, SPAWN.x, SPAWN.y);
+
+    // serpent fountain
+    glow(this, 690, 560, 0x4fd8ff, 3.2, 2200);
+    sparks(this, new Phaser.Geom.Rectangle(600, 520, 170, 110), 0xffffff, GLINT);
+    sparks(this, new Phaser.Geom.Rectangle(676, 465, 24, 20), 0x9fe8ff, { ...RISE, frequency: 120 });
+
+    // blue spirit-flame lamps
+    for (const [x, y] of [[415, 545], [930, 545], [570, 780], [775, 780]] as const) glow(this, x, y, 0x4fd8ff, 2, 1400 + x);
+    // sealed door: cyan runes pulse; torches flicker either side
+    glow(this, 680, 200, 0x4fd8ff, 4.5, 2000);
+    sparks(this, new Phaser.Geom.Rectangle(640, 200, 80, 80), 0x7fe8ff, RISE);
+    for (const [x, y] of [[573, 255], [772, 255]] as const) torch(this, x, y);
+    glow(this, 1170, 245, 0x4fd8ff, 3, 2600); // classroom hologram
+    glow(this, 228, 235, 0x4fd8ff, 2, 2200); // library lamp
+
+    // waterfalls and ponds
+    for (const [x, y, w, h] of [[120, 770, 60, 50], [230, 770, 60, 50], [370, 820, 40, 50], [940, 820, 60, 50]]) mist(this, new Phaser.Geom.Rectangle(x, y, w, h));
+    for (const rect of [new Phaser.Geom.Rectangle(90, 790, 290, 140), new Phaser.Geom.Rectangle(840, 800, 210, 110)]) sparks(this, rect, 0xffffff, GLINT);
+    for (const rect of [new Phaser.Geom.Rectangle(30, 620, 300, 160), new Phaser.Geom.Rectangle(1000, 680, 300, 200), new Phaser.Geom.Rectangle(430, 60, 120, 240)]) sparks(this, rect, 0xd8ff9a, DRIFT); // pollen
+
+    this.buildStudents();
   }
 
-  private openBoss(): void {
-    const save = gameState.current;
-    const world = getWorld("world-0");
-    if (!world) return;
-    if (save.completedBosses.includes(this.bossGate.boss.id)) {
-      this.dialogue.say("BYTE", ["Você já restaurou este núcleo. Pyra agradece."]);
-      return;
-    }
-    const allDone = world.lessons.every((l) => save.completedLessons.includes(l.id));
-    if (!allDone) {
-      this.dialogue.say("BYTE", ["O guardião ainda não vai te enfrentar. Complete os terminais do Primeiro Shell primeiro."]);
-      return;
-    }
-    this.busy = true;
-    const boss = this.bossGate.boss;
-    this.dialogue.say("BYTE", [boss.intro], () => {
-      this.terminal.open(boss.title, boss.intro, boss.challenge, () => {
-        gameState.current.completedBosses.push(boss.id);
-        gameState.current.xp += boss.challenge.xp;
-        gameState.persist();
-        this.hud.update(gameState.current);
-        this.refreshStationVisuals();
-        this.terminal.close();
-        this.busy = false;
-        this.dialogue.say("BYTE", [boss.victoryText, "Fim da demonstração atual — mais mundos de Pyra em breve."]);
-      });
-    });
+  /** Apprentices strolling the plaza: Byte's own animated sheet, tinted, each with a line for the curious. */
+  private buildStudents(): void {
+    const sheet = NPC_SHEETS.apprentice;
+    this.spawnNpc({ at: { x: 515, y: 440 }, sheet, tint: 0x9aa8ff, name: "Estudante", lines: ["Estou treinando print() há uma hora. Ainda acho as aspas confusas."], roam: 30 });
+    this.spawnNpc({ at: { x: 880, y: 560 }, sheet, tint: 0xc8a0ff, name: "Estudante", lines: ["Ouvi dizer que o Núcleo Fonte guarda todos os segredos de Pyra."], roam: 40 });
+    this.spawnNpc({ at: { x: 480, y: 590 }, sheet, tint: 0xffc890, name: "Aluna", lines: ["A biblioteca ainda guarda os grimórios de Python. Dizem que só abrem para quem decifra as runas."], roam: 40 });
+    this.spawnNpc({ at: { x: 450, y: 920 }, sheet, tint: 0x9fe0b0, name: "Estudante", lines: ["Desde que as runas apagaram, as aulas viraram só teoria. Volte logo com boas notícias!"], roam: 45 });
   }
 }

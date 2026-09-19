@@ -25,10 +25,12 @@ function indent(code: string): string {
     .join("\n");
 }
 
-// Player code runs inside a redirect_stdout block so its printed output becomes the
-// `_bq_stdout` string every hidden test can assert against, in addition to any variables/
-// functions the player defined (still in global scope — `with` doesn't create a new one).
-function buildScript(userCode: string, tests: Challenge["tests"]): string {
+// Player code is compiled from a string literal and exec'd inside a redirect_stdout block, so its printed
+// output becomes the `_bq_stdout` string every hidden test can assert against, and anything it defines
+// (variables/functions) lands in this script's globals for the tests. Compiling instead of nesting the source
+// inside `with:` keeps the player's spacing intact (multi-line strings) and tracebacks point at the *player's*
+// line numbers, which the "read the error" lesson depends on.
+export function buildScript(userCode: string, tests: Challenge["tests"]): string {
   const testBlocks = tests
     .map(
       (test, i) => `
@@ -45,9 +47,10 @@ except Exception as e:
 
   return `import io as _bq_io, contextlib as _bq_contextlib
 _bq_buffer = _bq_io.StringIO()
+_bq_code = ${JSON.stringify(userCode)}
 try:
     with _bq_contextlib.redirect_stdout(_bq_buffer):
-${indent(indent(userCode))}
+        exec(compile(_bq_code, "<seu código>", "exec"), globals())
 except BaseException:
     print(_bq_buffer.getvalue(), end="")
     raise
@@ -56,7 +59,7 @@ print(_bq_stdout, end="")
 ${testBlocks}`;
 }
 
-function splitStdout(stdout: string, testCount: number): { playerStdout: string; outcomes: Map<number, TestOutcome> } {
+export function splitStdout(stdout: string, testCount: number): { playerStdout: string; outcomes: Map<number, TestOutcome> } {
   const lines = stdout.split("\n");
   const playerLines: string[] = [];
   const outcomes = new Map<number, TestOutcome>();

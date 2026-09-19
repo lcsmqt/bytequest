@@ -18,6 +18,7 @@ async function getPyodide(): Promise<PyodideInterface> {
     const mod = (await import(/* @vite-ignore */ PYODIDE_ENTRY)) as { loadPyodide: LoadPyodideFn };
     return mod.loadPyodide({ indexURL: PYODIDE_CDN_BASE });
   })();
+  pyodideReady.catch(() => (pyodideReady = null)); // a failed download (offline) can be retried
   return pyodideReady;
 }
 

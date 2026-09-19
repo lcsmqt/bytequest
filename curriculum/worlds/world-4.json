@@ -1,0 +1,193 @@
+{
+  "id": "world-4",
+  "order": 4,
+  "title": "Floresta dos Loops",
+  "subtitle": "Onde Pyra repete a si mesma",
+  "lessons": [
+    {
+      "id": "w4-l1-for-range",
+      "world": "world-4",
+      "title": "Os Cinco Cristais",
+      "story": "Cinco cristais de energia brotam entre as pedras rúnicas da clareira. Contá-los um por um seria bobagem. Pyron: \"for percorre uma sequência automaticamente. range() cria essa sequência de números para você.\"",
+      "learningObjectives": ["Usar for com range()", "Acumular um total dentro de um loop"],
+      "explanation": "for variavel in range(n): repete o bloco n vezes, com variavel valendo 0, 1, 2... até n-1. Para acumular um total, crie uma variável antes do loop (ex: total = 0) e some a ela a cada repetição.",
+      "examples": ["total = 0\nfor i in range(5):\n    total += 10\nprint(total)"],
+      "challenge": {
+        "id": "w4-c1-for-range",
+        "title": "Colete os Cristais",
+        "instructions": "Existem 5 cristais, cada um valendo 10 de energia. Use um for com range(5) para somar tudo em uma variável total (começando em 0). Exiba: Total coletado: 50 (f-string).",
+        "starterCode": "total = 0\n# use um for com range(5) para somar 10 a cada volta\n",
+        "hints": [
+          "O loop precisa repetir 5 vezes: for i in range(5):",
+          "Dentro do loop, some 10 ao total: total += 10",
+          "total = 0\nfor i in range(5):\n    total += 10",
+          "total = 0\nfor i in range(5):\n    total += 10\nprint(f\"Total coletado: {total}\")",
+          "A resposta completa é:\ntotal = 0\nfor i in range(5):\n    total += 10\nprint(f\"Total coletado: {total}\")"
+        ],
+        "tests": [
+          { "code": "assert total == 50", "description": "total vale 50" },
+          { "code": "assert 'Total coletado: 50' in _bq_stdout", "description": "O texto exibido é 'Total coletado: 50'" }
+        ],
+        "xp": 20,
+        "successMessage": "Os cinco cristais brilham ao mesmo tempo e as pedras giram em espiral. Loopus sorri de longe. Pip: \"Viu como o for poupou seu trabalho?\""
+      },
+      "prerequisites": [],
+      "concepts": ["for", "range"],
+      "runeWord": "for"
+    },
+    {
+      "id": "w4-l2-while",
+      "world": "world-4",
+      "title": "A Contagem Regressiva",
+      "story": "Um canhão de runas, ao lado do portal, espera uma contagem regressiva para disparar. Pyron: \"while repete enquanto uma condição continuar True. Mas cuidado: se você esquecer de mudar essa condição, o loop nunca para.\"",
+      "learningObjectives": ["Usar while", "Entender por que esquecer de atualizar a condição trava o loop"],
+      "explanation": "while condicao: repete enquanto condicao for True. É essencial mudar algo dentro do loop que eventualmente torne a condição False — geralmente diminuindo ou aumentando uma variável. Esquecer isso cria um loop infinito.",
+      "examples": ["contagem = 3\nwhile contagem > 0:\n    print(contagem)\n    contagem -= 1"],
+      "challenge": {
+        "id": "w4-c2-while",
+        "title": "Dispare o Canhão",
+        "instructions": "Crie contagem = 3. Use while para exibir o valor de contagem e depois diminuí-la em 1, repetindo até contagem chegar a 0 (deve exibir 3, 2 e 1, cada um em uma linha). Depois do loop, exiba: Lançamento!",
+        "starterCode": "contagem = 3\n# escreva o while abaixo\n",
+        "hints": [
+          "A condição do while deve ser contagem > 0.",
+          "Não esqueça de diminuir contagem dentro do loop (contagem -= 1), ou ele nunca termina.",
+          "while contagem > 0:\n    print(contagem)\n    contagem -= 1",
+          "Depois do while (sem indentação), exiba 'Lançamento!'.",
+          "A resposta completa é:\ncontagem = 3\nwhile contagem > 0:\n    print(contagem)\n    contagem -= 1\nprint(\"Lançamento!\")"
+        ],
+        "tests": [
+          { "code": "assert '3' in _bq_stdout.splitlines() and '2' in _bq_stdout.splitlines() and '1' in _bq_stdout.splitlines()", "description": "A contagem 3, 2, 1 foi exibida" },
+          { "code": "assert 'Lançamento!' in _bq_stdout", "description": "Exibe 'Lançamento!' ao final" }
+        ],
+        "xp": 25,
+        "successMessage": "O canhão dispara um feixe de luz azul sobre a floresta."
+      },
+      "prerequisites": ["w4-l1-for-range"],
+      "concepts": ["while", "loop-infinito"],
+      "runeWord": "while"
+    },
+    {
+      "id": "w4-l3-break-continue",
+      "world": "world-4",
+      "title": "Atalhos na Trilha",
+      "story": "A trilha em espiral da floresta tem armadilhas nos números pares. Pyron: \"continue pula para a próxima volta do loop sem executar o resto. break interrompe o loop imediatamente, para sempre.\"",
+      "learningObjectives": ["Usar continue para pular uma iteração", "Usar break para interromper o loop"],
+      "explanation": "continue volta para o topo do loop, pulando o resto do bloco naquela repetição. break sai do loop imediatamente, mesmo que a condição ainda fosse True.",
+      "examples": ["for n in range(5):\n    if n == 2:\n        continue\n    if n == 4:\n        break\n    print(n)"],
+      "challenge": {
+        "id": "w4-c3-break-continue",
+        "title": "Some os Números Ímpares",
+        "instructions": "Percorra range(1, 11) somando em soma (começando em 0) apenas os números ímpares — use continue para pular os pares. Pare o loop com break assim que soma ultrapassar 20. Exiba: Soma final: 25 (f-string).",
+        "starterCode": "soma = 0\n# percorra range(1, 11), pule pares com continue e pare com break quando soma > 20\n",
+        "hints": [
+          "Um número é par se numero % 2 == 0.",
+          "Dentro do for, use continue para pular pares antes de somar.",
+          "Depois de somar, verifique if soma > 20: break.",
+          "soma = 0\nfor numero in range(1, 11):\n    if numero % 2 == 0:\n        continue\n    soma += numero\n    if soma > 20:\n        break",
+          "A resposta completa é:\nsoma = 0\nfor numero in range(1, 11):\n    if numero % 2 == 0:\n        continue\n    soma += numero\n    if soma > 20:\n        break\nprint(f\"Soma final: {soma}\")"
+        ],
+        "tests": [
+          { "code": "assert soma == 25", "description": "soma vale 25" },
+          { "code": "assert 'Soma final: 25' in _bq_stdout", "description": "O texto exibido é 'Soma final: 25'" }
+        ],
+        "xp": 25,
+        "successMessage": "A trilha se revela sem armadilhas. Pip: \"continue e break, no controle certo.\""
+      },
+      "prerequisites": ["w4-l2-while"],
+      "concepts": ["break", "continue", "for"],
+      "runeWord": "break"
+    }
+  ],
+  "boss": {
+    "id": "w4-boss-serpente-infinita",
+    "world": "world-4",
+    "title": "A Serpente Infinita",
+    "runeWord": "loop",
+    "intro": "Uma serpente de código bloqueia o portal da floresta, presa em um loop que nunca termina. Pyron: \"Olhe esse while com atenção — falta algo dentro dele. Sem esse algo, o loop roda para sempre.\"",
+    "challenge": {
+      "id": "w4-boss-challenge",
+      "title": "Conserte o Loop Infinito",
+      "instructions": "O código abaixo trava em um loop infinito porque vidas_serpente nunca muda de valor. Conserte-o para que ele exiba a contagem de vidas até chegar a 0 e, no final, exiba: Serpente derrotada!",
+      "starterCode": "vidas_serpente = 5\nwhile vidas_serpente > 0:\n    print(f\"A serpente ainda tem {vidas_serpente} vidas\")\n# falta atualizar vidas_serpente aqui dentro do loop!\n",
+      "hints": [
+        "O loop nunca termina porque vidas_serpente nunca diminui — esse é o bug.",
+        "Adicione uma linha dentro do while que diminua vidas_serpente (ex: vidas_serpente -= 1).",
+        "vidas_serpente = 5\nwhile vidas_serpente > 0:\n    print(f\"A serpente ainda tem {vidas_serpente} vidas\")\n    vidas_serpente -= 1",
+        "Depois do while, exiba 'Serpente derrotada!'.",
+        "A resposta completa é:\nvidas_serpente = 5\nwhile vidas_serpente > 0:\n    print(f\"A serpente ainda tem {vidas_serpente} vidas\")\n    vidas_serpente -= 1\nprint(\"Serpente derrotada!\")"
+      ],
+      "tests": [
+        { "code": "assert vidas_serpente == 0", "description": "O loop terminou com vidas_serpente em 0" },
+        { "code": "assert 'A serpente ainda tem 5 vidas' in _bq_stdout and 'A serpente ainda tem 1 vidas' in _bq_stdout", "description": "A contagem de vidas foi exibida corretamente" },
+        { "code": "assert 'Serpente derrotada!' in _bq_stdout", "description": "Exibe 'Serpente derrotada!' ao final" }
+      ],
+      "xp": 60,
+      "successMessage": "O loop se fecha corretamente. A serpente se desfaz em pixels. Mais um Fragmento da Fonte é recuperado."
+    },
+    "victoryText": "A Floresta dos Loops para de repetir o mesmo erro. Quatro Fragmentos da Fonte já foram recuperados — Pyra começa, lentamente, a lembrar de si mesma."
+  },
+  "bugs": [
+    {
+      "id": "w4-bug-range",
+      "monster": "goblin",
+      "name": "Index Goblin",
+      "taunt": [
+        "Hihi! O range para um antes! Sempre esqueço o último número — você também vai!"
+      ],
+      "challenge": {
+        "id": "w4-bug-range-challenge",
+        "title": "Conte até o Fim",
+        "instructions": "A soma de 1 até 5 deveria dar 15, mas o loop para cedo. Corrija o range para exibir: Soma: 15",
+        "starterCode": "total = 0\nfor i in range(1, 5):\n    total += i\nprint(f\"Soma: {total}\")\n",
+        "hints": [
+          "range(a, b) vai de a até b - 1: o último número não entra.",
+          "Para incluir o 5, o limite superior precisa ser 6.",
+          "for i in range(1, 6):",
+          "total = 0\nfor i in range(1, 6):\n    total += i\nprint(f\"Soma: {total}\")",
+          "A resposta completa é:\ntotal = 0\nfor i in range(1, 6):\n    total += i\nprint(f\"Soma: {total}\")"
+        ],
+        "tests": [
+          {
+            "code": "assert total == 15",
+            "description": "total vale 15"
+          },
+          {
+            "code": "assert 'Soma: 15' in _bq_stdout",
+            "description": "Exibe 'Soma: 15'"
+          }
+        ],
+        "xp": 20,
+        "successMessage": "O goblin atira a pedra para longe e foge. Agora o loop conta até o fim."
+      }
+    },
+    {
+      "id": "w4-bug-indentacao",
+      "monster": "goblin",
+      "name": "Index Goblin",
+      "taunt": [
+        "Hihi! Meu loop está vazio — o corpo dele não tem recuo nenhum!"
+      ],
+      "challenge": {
+        "id": "w4-bug-indentacao-challenge",
+        "title": "Recue o Corpo do Loop",
+        "instructions": "O print deveria ficar dentro do for. Corrija a indentação para exibir Golpe 0, Golpe 1 e Golpe 2",
+        "starterCode": "for i in range(3):\nprint(f\"Golpe {i}\")\n",
+        "hints": [
+          "Tudo que pertence ao loop precisa estar recuado abaixo do for.",
+          "Adicione 4 espaços antes do print (o editor ajuda com Tab).",
+          "    print(...)",
+          "for i in range(3):\n    print(f\"Golpe {i}\")",
+          "A resposta completa é:\nfor i in range(3):\n    print(f\"Golpe {i}\")"
+        ],
+        "tests": [
+          {
+            "code": "assert 'Golpe 0' in _bq_stdout and 'Golpe 2' in _bq_stdout",
+            "description": "Exibe Golpe 0 até Golpe 2"
+          }
+        ],
+        "xp": 20,
+        "successMessage": "O goblin tropeça na própria pedra e desaba. O corpo do loop está no lugar."
+      }
+    }
+  ]
+}

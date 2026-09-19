@@ -1,0 +1,26 @@
+{
+  "pyron": {
+    "w": 89,
+    "h": 86,
+    "content": 84,
+    "frames": 13
+  },
+  "lyra": {
+    "w": 87,
+    "h": 91,
+    "content": 84,
+    "frames": 4
+  },
+  "sir-boolean": {
+    "w": 85,
+    "h": 90,
+    "content": 84,
+    "frames": 4
+  },
+  "loopus": {
+    "w": 76,
+    "h": 86,
+    "content": 84,
+    "frames": 4
+  }
+}

@@ -1,0 +1,191 @@
+{
+  "id": "world-1",
+  "order": 1,
+  "title": "Vale das Variáveis",
+  "subtitle": "Onde os dados de Pyra são guardados",
+  "lessons": [
+    {
+      "id": "w1-l1-variaveis",
+      "world": "world-1",
+      "title": "Energia Armazenada",
+      "story": "No Vale, cada cristal guardava um valor — mas a runa do cristal de energia esqueceu o seu. Pyron toca a inscrição: \"Uma variável é uma caixa com nome que guarda um valor. Vamos devolver essa memória ao cristal.\"",
+      "learningObjectives": ["Criar variáveis", "Usar f-strings para exibir valores"],
+      "explanation": "Uma variável guarda um valor com um nome, usando =. Nomes de variáveis em Python usam letras minúsculas e underscore (snake_case). Para exibir o valor de uma variável dentro de um texto, use uma f-string: f\"Energia: {energia}\".",
+      "examples": ["energia = 100\nprint(f\"Energia: {energia}\")"],
+      "challenge": {
+        "id": "w1-c1-variaveis",
+        "title": "Devolva a Memória ao Cristal",
+        "instructions": "Crie uma variável chamada energia com o valor 100. Depois exiba: Energia: 100 (use uma f-string).",
+        "starterCode": "# crie a variável energia abaixo\n",
+        "hints": [
+          "Você precisa de uma variável e de um print com f-string.",
+          "Uma variável é criada com nome = valor.",
+          "energia = 100\nprint(f\"Energia: {energia}\")",
+          "Cheque se o nome da variável é exatamente 'energia' (sem acentos).",
+          "A resposta completa é:\nenergia = 100\nprint(f\"Energia: {energia}\")"
+        ],
+        "tests": [
+          { "code": "assert energia == 100", "description": "A variável energia vale 100" },
+          { "code": "assert 'Energia: 100' in _bq_stdout", "description": "O texto exibido é 'Energia: 100'" }
+        ],
+        "xp": 20,
+        "successMessage": "O cristal rosa reacende e a runa revela a palavra: variável. Lyra sorri ao longe. Pip: \"Ele lembrou quem é!\""
+      },
+      "prerequisites": [],
+      "concepts": ["variaveis", "f-strings"],
+      "runeWord": "variável"
+    },
+    {
+      "id": "w1-l2-tipos",
+      "world": "world-1",
+      "title": "Os Quatro Formatos",
+      "story": "Quatro cristais — int, float, string e bool — só aceitam valores do seu próprio formato. Pyron: \"Toda variável tem um tipo. Cada runa só confia em valores do tipo certo.\"",
+      "learningObjectives": ["Diferenciar int, float, str e bool", "Usar type()"],
+      "explanation": "Python tem tipos básicos: int (inteiro, ex: 10), float (decimal, ex: 10.5), str (texto, entre aspas) e bool (True ou False). A função type(valor) mostra o tipo de um valor.",
+      "examples": ["nivel = 3\nprint(type(nivel))", "ativo = True\nprint(type(ativo))"],
+      "challenge": {
+        "id": "w1-c2-tipos",
+        "title": "Afine os Cristais",
+        "instructions": "Crie as variáveis: nivel = 3 (inteiro), precisao = 0.5 (decimal) e online = True (booleano). Depois exiba o tipo de cada uma usando print(type(...)), uma por linha.",
+        "starterCode": "# crie nivel, precisao e online, depois use print(type(...)) para cada uma\n",
+        "hints": [
+          "São três variáveis com três tipos diferentes.",
+          "Números com vírgula em Python usam ponto: 0.5.",
+          "True e False (com letra maiúscula) são valores booleanos.",
+          "nivel = 3\nprecisao = 0.5\nonline = True\nprint(type(nivel))\nprint(type(precisao))\nprint(type(online))",
+          "A resposta completa é:\nnivel = 3\nprecisao = 0.5\nonline = True\nprint(type(nivel))\nprint(type(precisao))\nprint(type(online))"
+        ],
+        "tests": [
+          { "code": "assert isinstance(nivel, int) and nivel == 3", "description": "nivel é um int igual a 3" },
+          { "code": "assert isinstance(precisao, float) and precisao == 0.5", "description": "precisao é um float igual a 0.5" },
+          { "code": "assert online is True", "description": "online é o booleano True" },
+          { "code": "assert \"<class 'int'>\" in _bq_stdout and \"<class 'float'>\" in _bq_stdout and \"<class 'bool'>\" in _bq_stdout", "description": "Os três tipos foram exibidos" }
+        ],
+        "xp": 20,
+        "successMessage": "Os quatro cristais vibram em harmonia. Pip: \"Cada valor no seu devido formato.\""
+      },
+      "prerequisites": ["w1-l1-variaveis"],
+      "concepts": ["tipos", "type"],
+      "runeWord": "tipos"
+    },
+    {
+      "id": "w1-l3-conversao",
+      "world": "world-1",
+      "title": "Leituras do Sensor",
+      "story": "Uma runa antiga do Vale só entrega números escritos como texto — Pyra não confia em texto para fazer contas. Pyron: \"Precisamos traduzir esse texto em número antes de usá-lo.\"",
+      "learningObjectives": ["Converter tipos com int(), float() e str()", "Combinar conversão com f-strings"],
+      "explanation": "int(\"42\") transforma o texto \"42\" no número 42. float(\"1.5\") faz o mesmo para decimais. str(42) faz o caminho inverso, transformando um número em texto. Isso é essencial porque não dá para somar texto com número diretamente.",
+      "examples": ["leitura = \"42\"\nnumero = int(leitura)\nprint(numero + 8)"],
+      "challenge": {
+        "id": "w1-c3-conversao",
+        "title": "Traduza a Runa",
+        "instructions": "A variável leitura já existe com o valor \"75\" (texto). Converta-a para um número inteiro guardado em uma variável chamada energia_sensor, some 10 a ela, e exiba: Energia final: 85 (usando f-string).",
+        "starterCode": "leitura = \"75\"\n# converta leitura para número, some 10 e exiba o resultado\n",
+        "hints": [
+          "Use int() para transformar o texto em número.",
+          "energia_sensor = int(leitura) + 10",
+          "energia_sensor = int(leitura) + 10\nprint(f\"Energia final: {energia_sensor}\")",
+          "Confira se o texto de saída é exatamente 'Energia final: 85'.",
+          "A resposta completa é:\nleitura = \"75\"\nenergia_sensor = int(leitura) + 10\nprint(f\"Energia final: {energia_sensor}\")"
+        ],
+        "tests": [
+          { "code": "assert energia_sensor == 85", "description": "energia_sensor vale 85" },
+          { "code": "assert 'Energia final: 85' in _bq_stdout", "description": "O texto exibido é 'Energia final: 85'" }
+        ],
+        "xp": 25,
+        "successMessage": "A runa traduzida devolve o número ao Vale e o cristal verde do string brilha de novo."
+      },
+      "prerequisites": ["w1-l2-tipos"],
+      "concepts": ["conversao-tipos", "f-strings"],
+      "runeWord": "int()"
+    }
+  ],
+  "boss": {
+    "id": "w1-boss-calculadora-status",
+    "world": "world-1",
+    "title": "O Arquivo Corrompido",
+    "runeWord": "ficha",
+    "intro": "Um pergaminho antigo guarda a ficha de um aventureiro, mas tudo virou texto solto e a runa do cristal bool pulsa em vermelho. Pyron: \"Restaure a ficha: converta o que for número, guarde tudo em variáveis com nome certo e exiba a ficha completa.\"",
+    "challenge": {
+      "id": "w1-boss-challenge",
+      "title": "Restaure a Ficha do Aventureiro",
+      "instructions": "As variáveis nome = \"Ana\", vida_texto = \"80\" e ataque_texto = \"15\" já existem. Crie vida (int) e ataque (int) convertendo os textos. Depois exiba, em uma única linha: Ana | Vida: 80 | Ataque: 15 (use uma f-string).",
+      "starterCode": "nome = \"Ana\"\nvida_texto = \"80\"\nataque_texto = \"15\"\n# converta e monte a ficha abaixo\n",
+      "hints": [
+        "Você vai converter dois textos para números com int().",
+        "vida = int(vida_texto)\nataque = int(ataque_texto)",
+        "Depois monte uma única f-string com os três valores, separados por ' | '.",
+        "vida = int(vida_texto)\nataque = int(ataque_texto)\nprint(f\"{nome} | Vida: {vida} | Ataque: {ataque}\")",
+        "A resposta completa é:\nvida = int(vida_texto)\nataque = int(ataque_texto)\nprint(f\"{nome} | Vida: {vida} | Ataque: {ataque}\")"
+      ],
+      "tests": [
+        { "code": "assert vida == 80 and ataque == 15", "description": "vida e ataque foram convertidos corretamente" },
+        { "code": "assert 'Ana | Vida: 80 | Ataque: 15' in _bq_stdout", "description": "A ficha foi exibida no formato correto" }
+      ],
+      "xp": 60,
+      "successMessage": "A ficha se reconstrói sobre a runa. Mais um Fragmento da Fonte é recuperado."
+    },
+    "victoryText": "O Vale das Variáveis volta a guardar memória com clareza. Uma trilha se abre rumo à Forja dos Operadores."
+  },
+  "bugs": [
+    {
+      "id": "w1-bug-nome",
+      "monster": "wraith",
+      "name": "Null Wraith",
+      "taunt": [
+        "Uuuh... eu guardei o nome errado. Uma variável que não existe não guarda nada...",
+        "Ache a letra trocada e me desfaça."
+      ],
+      "challenge": {
+        "id": "w1-bug-nome-challenge",
+        "title": "Ache o Nome Perdido",
+        "instructions": "Uma letra sumiu do nome da variável. Corrija o código para exibir: Energia: 40",
+        "starterCode": "energia = 40\nprint(f\"Energia: {energa}\")\n",
+        "hints": [
+          "Leia o erro: o Python diz que um nome não foi definido. Compare os nomes.",
+          "A variável foi criada como energia, mas o print usa outro nome.",
+          "print(f\"Energia: {energia}\")",
+          "energia = 40\nprint(f\"Energia: {energia}\")",
+          "A resposta completa é:\nenergia = 40\nprint(f\"Energia: {energia}\")"
+        ],
+        "tests": [
+          {
+            "code": "assert 'Energia: 40' in _bq_stdout",
+            "description": "Exibe 'Energia: 40'"
+          }
+        ],
+        "xp": 15,
+        "successMessage": "O espectro se dissolve em fumaça. A variável volta a ter o nome certo."
+      }
+    },
+    {
+      "id": "w1-bug-tipos",
+      "monster": "wraith",
+      "name": "Null Wraith",
+      "taunt": [
+        "Uuuh... texto não soma com número. Tente juntar os dois e eu me alimento do seu erro!"
+      ],
+      "challenge": {
+        "id": "w1-bug-tipos-challenge",
+        "title": "Traduza o Texto",
+        "instructions": "pontos é um texto e bonus é um número. Corrija o código para exibir a soma: 15",
+        "starterCode": "pontos = \"10\"\nbonus = 5\nprint(pontos + bonus)\n",
+        "hints": [
+          "Não dá para somar texto com número: é um TypeError.",
+          "Converta o texto em número inteiro antes de somar: int().",
+          "print(int(pontos) + bonus)",
+          "pontos = \"10\"\nbonus = 5\nprint(int(pontos) + bonus)",
+          "A resposta completa é:\npontos = \"10\"\nbonus = 5\nprint(int(pontos) + bonus)"
+        ],
+        "tests": [
+          {
+            "code": "assert '15' in _bq_stdout",
+            "description": "Exibe 15"
+          }
+        ],
+        "xp": 15,
+        "successMessage": "O Wraith solta um lamento e some. A soma finalmente fecha."
+      }
+    }
+  ]
+}
